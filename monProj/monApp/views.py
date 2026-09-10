@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-def home(request):
-    return HttpResponse("<h1>Hello Django!</h1>")
+def home(request, param="default"):
+    return HttpResponse(f"<h1>Hello {param}!</h1>")
 
 
 def contact(request):
