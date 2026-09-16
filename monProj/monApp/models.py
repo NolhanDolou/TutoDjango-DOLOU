@@ -26,3 +26,7 @@ class Rayon(models.Model):
 
     def __str__(self):
         return self.nomRayon 
+
+class Statut(models.Model):
+    identifiantSatut = models.AutoField(primary_key=True)
+    libelleStatut = models.CharField(max_length=200)
