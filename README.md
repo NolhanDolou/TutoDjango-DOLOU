@@ -4,7 +4,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
 
-**-[] TP1 page 1**
+**-[] TP1 page 8**
 
 
 
@@ -39,3 +39,19 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
             response = self.client.get(reverse('home', args=["test"]))
             self.assertContains(response, 'Hello test!')
     ```
+
+
+### 4. ORM
+
+- `./manage.py makemigrations monApp` : créer une migration
+
+- `./manage.py sqlmigrate monApp 0001` : créer le SQL correspondant
+
+- `./manage.py migrate` : applique les migrations
+
+
+Trois étapes pour effectuer les modifications du modèles :
+- Modifiez les modèles (dans models.py).
+- Exécutez manage.py makemigrations pour créer des migrations correspondant à ces
+changements.
+- Exécutez manage.py migrate pour appliquer ces modifications à la base de données.
