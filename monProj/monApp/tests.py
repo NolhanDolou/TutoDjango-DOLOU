@@ -26,13 +26,13 @@ class HomeViewTest(TestCase):
         self.assertContains(response, 'Hello default!')
 
     def test_home_param_content(self):
-            response = self.client.get(reverse('home', args="test"))
-            self.assertContains(response, 'Hello test!')
+        response = self.client.get(reverse('home', args=["test"]))
+        self.assertContains(response, 'Hello test!')
 
     def test_contact_content(self):
-            response = self.client.get(reverse('contact'))
-            self.assertContains(response, 'Bienvenue sur la page de contact!')
+        response = self.client.get(reverse('contact'))
+        self.assertContains(response, '<h1>Bienvenue sur la page de contact</h1>')
 
-    def test_home_content(self):
-            response = self.client.get(reverse('aboutus'))
-            self.assertContains(response, "Bienvenue sur la page d'infomations")
+    def test_aboutus_content(self):
+        response = self.client.get(reverse('aboutus'))
+        self.assertContains(response, "<h1>Bienvenue sur la page d'infomations</h1>")
