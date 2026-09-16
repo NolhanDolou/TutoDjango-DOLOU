@@ -20,4 +20,7 @@ class Produit(models.Model):
 
 class Rayon(models.Model):
     idRayon = models.AutoField(primary_key=True)
-    nomRayon = models.AutoField(max_length=200)
+    nomRayon = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.nomRayon 
