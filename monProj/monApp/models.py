@@ -17,3 +17,7 @@ class Produit(models.Model):
 
     def __str__(self):
         return self.intituleProd
+
+class Rayon(models.Model):
+    idRayon = models.AutoField(primary_key=True)
+    nomRayon = models.AutoField(max_length=200)
