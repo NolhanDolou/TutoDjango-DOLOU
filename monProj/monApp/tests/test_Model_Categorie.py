@@ -10,7 +10,7 @@ class CategorieModelTest(TestCase):
         self.assertEqual(self.ctgr.nomCat, "CategoriePourTest")
 
     def test_string_representation(self):
-        self.assertEqual(str(self.ctgr), "CCategoriePourTest")
+        self.assertEqual(str(self.ctgr), "CategoriePourTest")
 
     def test_categorie_updating(self):
         self.ctgr.nomCat = "CategoriePourTestsModifiee"
