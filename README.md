@@ -4,7 +4,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
 
-**-[] TP1 page 8 : Nouveaux tests**
+**-[] TP1 page 9 : Pour prochaine séance : tests rayon**
 
 
 
