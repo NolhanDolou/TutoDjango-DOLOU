@@ -20,8 +20,12 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 ### 2. Coverage 
 - `coverage run --source='monApp' manage.py test`
 - `coverage report`
+- si tests regroupés : `coverage run manage.py test monApp/tests`
+
+
 
 ### 3. Tests
+#### 3.1 Classique
 
 - Tests "status" + paramètre : 
 
@@ -39,6 +43,10 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
             response = self.client.get(reverse('home', args=["test"]))
             self.assertContains(response, 'Hello test!')
     ```
+
+#### 3.2 Regroupé
+- lancement : `./manage.py test monApp/tests`
+
 
 
 ### 4. ORM
