@@ -1,10 +1,3 @@
-# class Statut(models.Model):
-#     identifiantSatut = models.AutoField(primary_key=True)
-#     libelleStatut = models.CharField(max_length=200)
-
-#     def __str__(self):
-#         return self.libelleStatut
-
 from django.test import TestCase
 from monApp.models import Statut
 
