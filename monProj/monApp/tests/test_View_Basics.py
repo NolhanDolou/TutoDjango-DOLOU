@@ -36,3 +36,6 @@ class HomeViewTest(TestCase):
     def test_aboutus_content(self):
         response = self.client.get(reverse('aboutus'))
         self.assertContains(response, "<h1>Bienvenue sur la page d'infomations</h1>")
+
+
+    
