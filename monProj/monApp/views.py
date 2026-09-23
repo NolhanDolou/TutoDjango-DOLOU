@@ -33,3 +33,10 @@ def ListeCategories(request):
     res += "</ul>"
     return HttpResponse(res)
 
+def ListeRayons(request):
+    rayon = Rayon.objects.all()
+    res = "<ul>"
+    for rn in rayon:
+        res += f"<li>{rn.nomRayon}</li>"
+    res += "</ul>"
+    return HttpResponse(res)
