@@ -40,3 +40,11 @@ def ListeRayons(request):
         res += f"<li>{rn.nomRayon}</li>"
     res += "</ul>"
     return HttpResponse(res)
+
+def ListeStatuts(request):
+    statut = Statut.objects.all()
+    res = "<ul>"
+    for st in statut:
+        res += f"<li>{st.libelleStatut}</li>"
+    res += "</ul>"
+    return HttpResponse(res)
