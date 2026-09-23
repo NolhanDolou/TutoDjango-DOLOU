@@ -78,4 +78,14 @@ Ajouter un intitulé : `prdt.intituleProd="ipod"`
 Ajouter un prix : `prdt.prixUnitaireProd = 59.99`
 Check le produit créé : `prdt`
 
+On crée un statut : `s=Statut(idStatut=0,libelleStatut="Offline")`
+On sauv dans la BD le statut : `s.save()`
+On attribut le statut au produit : `prdt.statut=s`
+On sauv le prod dans la BD : `prdt.save()`
+
+Ou on peut faire : 
+* `Produit(intituleProd="iphone", prixUnitaireProd=1299.99, statut=s).save()`
+
+* `prdt=Produit.objects.create(intituleProd="ipad", prixUnitaireProd=499.69,statut=s)`
+
 
