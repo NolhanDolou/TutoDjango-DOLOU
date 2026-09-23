@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from monApp.models import Produit
+from monApp.models import Categorie
+from monApp.models import Rayon
+from monApp.models import Statut
 
 
 # Create your views here.
@@ -22,10 +25,11 @@ def ListeProduits(request):
     res += "</ul>"
     return HttpResponse(res)
 
-def ListeProduits(request):
-    prdts = Produit.objects.all()
+def ListeCategories(request):
+    cate = Categorie.objects.all()
     res = "<ul>"
-    for prd in prdts:
-        res += f"<li>{prd.intituleProd}</li>"
+    for cat in cate:
+        res += f"<li>{cat.nomCat}</li>"
     res += "</ul>"
     return HttpResponse(res)
+
