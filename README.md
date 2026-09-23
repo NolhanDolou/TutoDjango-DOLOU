@@ -4,7 +4,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
 
-**-[] TP1 page 9 : Pour prochaine séance : tests rayon**
+**-[] TP1 page 10**
 
 
 
@@ -63,3 +63,19 @@ Trois étapes pour effectuer les modifications du modèles :
 - Exécutez manage.py makemigrations pour créer des migrations correspondant à ces
 changements.
 - Exécutez manage.py migrate pour appliquer ces modifications à la base de données.
+
+### 5. Shell
+
+Pour lancer le shell : 
+* `python manage.py shell`
+* `./manage.py shell`
+
+Importer le modèle : `from monApp.models import *`
+Voir tous les produits : `Produit.objects.all()`
+
+Créer un prod : `prdt = Produit()`
+Ajouter un intitulé : `prdt.intituleProd="ipod"`
+Ajouter un prix : `prdt.prixUnitaireProd = 59.99`
+Check le produit créé : `prdt`
+
+
