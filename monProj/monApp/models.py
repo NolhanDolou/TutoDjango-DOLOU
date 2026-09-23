@@ -9,7 +9,7 @@ class Categorie(models.Model):
         return self.nomCat
 
 class Statut(models.Model):
-    identifiantSatut = models.AutoField(primary_key=True)
+    idStatut = models.AutoField(primary_key=True)
     libelleStatut = models.CharField(max_length=200)
 
     def __str__(self):
