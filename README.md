@@ -3,7 +3,7 @@
 Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
--[X] TP1  fini
+-[X] TP1  fini (juste tests content a faire pour pages listes)
 
 **-[] TD2 p.1**
 
@@ -89,4 +89,9 @@ Ou on peut faire :
 
 * `prdt=Produit.objects.create(intituleProd="ipad", prixUnitaireProd=499.69,statut=s)`
 
+### 6. Administration
 
+creer super user : `./manage.py createsuperuser`
+(usr : o22403372, pwd : o22403372)
+
+pour ajouter des elements a notre page d'admin : `admin.site.register(Produit)`
