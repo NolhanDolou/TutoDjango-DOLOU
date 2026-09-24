@@ -19,6 +19,13 @@ class ProduitFilter(admin.SimpleListFilter):
         if self.value() == 'OffLine':
             return queryset.filter(statut=0)
 
+def set_Produit_online(modeladmin, request, queryset):
+    queryset.update(statut=1)
+set_Produit_online.short_description = "Mettre en ligne"
+
+def set_Produit_offline(modeladmin, request, queryset):
+    queryset.update(statut=0)
+set_Produit_offline.short_description = "Mettre hors ligne"
 
 class ProduitAdmin(admin.ModelAdmin):
     model=Produit
@@ -28,6 +35,8 @@ class ProduitAdmin(admin.ModelAdmin):
     search_fields = ('intituleProd', 'dateFabProd')
     list_filter = (ProduitFilter,)
     date_hierarchy = 'dateFabProd'
+    ordering = ('-dateFabProd',)
+    actions = [set_Produit_online, set_Produit_offline]
 
 
 
@@ -38,6 +47,7 @@ class ProduitInline(admin.TabularInline):
 class CategorieAdmin(admin.ModelAdmin):
     model=Categorie
     inlines=[ProduitInline]
+
 
 
 admin.site.register(Produit, ProduitAdmin)
