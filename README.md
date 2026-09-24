@@ -3,8 +3,9 @@
 Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
+-[X] TP1  fini
 
-**-[] TP1 page 12 : tests**
+**-[] TD2 p.1**
 
 
 

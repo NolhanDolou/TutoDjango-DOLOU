@@ -5,8 +5,8 @@ class HomeViewTest(TestCase):
 
     # test de l'url de la page d'accueil
     def test_home_status_code(self):
-                    response = self.client.get(reverse('default'))
-                    self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('default'))
+        self.assertEqual(response.status_code, 200)
     
     def test_home_param_status_code(self):
         response = self.client.get(reverse('home', args=["test"]))
@@ -38,4 +38,29 @@ class HomeViewTest(TestCase):
         self.assertContains(response, "<h1>Bienvenue sur la page d'infomations</h1>")
 
 
-    
+#----------------------------------------------------------------------------------
+class ListViewTest(TestCase):
+
+    # test de l'url de la page d'accueil
+    def test_lst_prod_status_code(self):
+        response = self.client.get(reverse('ListeProduits'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_lst_cate_status_code(self):
+        response = self.client.get(reverse('ListeCategories'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_lst_rn_status_code(self):
+        response = self.client.get(reverse('ListeRayons'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_lst_stt_status_code(self):
+        response = self.client.get(reverse('ListeStatuts'))
+        self.assertEqual(response.status_code, 200)
+
+
+#----------------------------------------------------------------------------------
+    # test du contenu de la page d'accueil
+    # def test_lst_prod_content(self):
+    #     response = self.client.get(reverse('ListeProduits'))
+    #     self.assertContains(response, '')
