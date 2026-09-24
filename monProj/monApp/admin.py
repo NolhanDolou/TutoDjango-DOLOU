@@ -1,3 +1,5 @@
+from decimal import ROUND_HALF_UP, Decimal
+
 from django.contrib import admin
 from .models import Produit, Categorie, Statut, Rayon
 
@@ -29,7 +31,7 @@ set_Produit_offline.short_description = "Mettre hors ligne"
 
 class ProduitAdmin(admin.ModelAdmin):
     model=Produit
-    list_display = ["refProd", "intituleProd", "prixUnitaireProd", "dateFabProd", "categorie", "statut"]
+    list_display = ["refProd", "intituleProd", "prixUnitaireProd", "prixTTCProd", "dateFabProd", "categorie", "statut"]
     list_editable = ["intituleProd", "prixUnitaireProd", "dateFabProd"]
     radio_fields = {"statut": admin.VERTICAL}
     search_fields = ('intituleProd', 'dateFabProd')
@@ -37,6 +39,9 @@ class ProduitAdmin(admin.ModelAdmin):
     date_hierarchy = 'dateFabProd'
     ordering = ('-dateFabProd',)
     actions = [set_Produit_online, set_Produit_offline]
+    def prixTTCProd(self, instance):
+        return (instance.prixUnitaireProd * Decimal('1.20')).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
+    prixTTCProd.short_description = "Prix TTC"
 
 
 
