@@ -16,7 +16,7 @@ class StatutModelTest(TestCase):
         self.stt.libelleStatut = "StatutTestModifie"
         self.stt.save()
         # Récup obj maj
-        updated_stt = Statut.objects.get(identifiantSatut=self.stt.identifiantSatut)
+        updated_stt = Statut.objects.get(idStatut=self.stt.idStatut)
         self.assertEqual(updated_stt.libelleStatut, "StatutTestModifie")
 
     def test_categorie_deletion(self):
