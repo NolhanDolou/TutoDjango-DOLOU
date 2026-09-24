@@ -37,4 +37,13 @@ class Rayon(models.Model):
     def __str__(self):
         return self.nomRayon
 
+class Contenir(models.Model):
+    produit = models.ForeignKey(Produit, on_delete=models.CASCADE, related_name="contenir_produit")
+    rayon = models.ForeignKey(Rayon, on_delete=models.CASCADE, related_name="contenir_rayon")
+    Qte = models.PositiveIntegerField()
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=['produit', 'rayon'], name='unique_produit_rayon')]
+
+    def __str__(self):
+        return f"{self.produit} dans {self.rayon} (Qte: {self.Qte})"
 
