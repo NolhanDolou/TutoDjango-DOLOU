@@ -7,6 +7,17 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 **-[] TD2 p.9 : Tests contenir**
 
+État du coverage fin TD2 : 
+
+| Fichier              | Instructions | Manquées | Couverture |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            3 |        0 |       100% |
+| `monApp/views.py`    |           40 |        0 |       100% |
+| **Total**            |       **80** |    **0** | **100%** |
+
 
 
 
