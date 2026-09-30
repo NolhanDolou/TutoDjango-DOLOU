@@ -3,9 +3,10 @@
 Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
--[X] TP1  fini 
+-[X] TP1 fini 
+-[x] TD2 fini
 
-**-[] TD2 p.9 : Tests contenir**
+**-[] TP2 : à commencer**
 
 État du coverage fin TD2 : 
 
