@@ -14,16 +14,16 @@ class ContenirModelTest(TestCase):
         self.assertEqual(self.ctnr.produit.intituleProd, "ProdTest")
         
 
-    # def test_string_representation(self):
-    #     self.assertEqual(str(self.ctgr), "ContenuePourTest")
+    def test_string_representation(self):
+        self.assertEqual(str(self.ctnr), "ProdTest dans RayonPourTest (Qte: 1)")
 
-    # def test_categorie_updating(self):
-    #     self.ctgr.nomCat = "CategoriePourTestsModifiee"
-    #     self.ctgr.save()
-    #     # Récup obj maj
-    #     updated_ctgr = Categorie.objects.get(idCat=self.ctgr.idCat)
-    #     self.assertEqual(updated_ctgr.nomCat, "CategoriePourTestsModifiee")
+    def test_contenir_updating(self):
+        self.ctnr.produit.intituleProd = "prodCntrModif"
+        self.ctnr.produit.save()
+        # Récup obj maj
+        updated_ctnr = Contenir.objects.get(produit=self.ctnr.produit)
+        self.assertEqual(updated_ctnr.produit.intituleProd, "prodCntrModif")
 
-    # def test_categorie_deletion(self):
-    #     self.ctgr.delete()
-    #     self.assertEqual(Categorie.objects.count(),0)
+    def test_contenir_deletion(self):
+        self.ctnr.delete()
+        self.assertEqual(Contenir.objects.count(),0)

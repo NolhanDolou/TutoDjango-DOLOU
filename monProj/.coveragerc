@@ -6,3 +6,4 @@ omit =
     */tests/*
     */migrations/*
     */tests.py
+    */admin.py

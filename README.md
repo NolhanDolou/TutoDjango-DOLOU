@@ -3,7 +3,7 @@
 Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
--[X] TP1  fini (juste tests content a faire pour pages listes)
+-[X] TP1  fini 
 
 **-[] TD2 p.9 : Tests contenir**
 
