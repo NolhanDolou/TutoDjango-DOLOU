@@ -26,10 +26,14 @@ from django.http import HttpResponse
 #         return HttpResponse(f"<h1>Hello {param}!</h1>")
 #     return HttpResponse("<h1>Hello Django!</h1>")
 
+# def home(request,param=None):
+#     if param:
+#         return HttpResponse(f"<h1>Hello {param}!</h1>")
+#     return HttpResponse("<h1>Hello Django!</h1>")
+
 def home(request,param=None):
-    if param:
-        return HttpResponse(f"<h1>Hello {param}!</h1>")
-    return HttpResponse("<h1>Hello Django!</h1>")
+    return render(request, 'monApp/home.html', {'param':param})
+    
 
 def contact(request):
     return HttpResponse("<h1>Bienvenue sur la page de contact</h1>")

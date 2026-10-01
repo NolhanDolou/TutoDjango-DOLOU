@@ -5,7 +5,7 @@ class HomeViewTest(TestCase):
 
     # test de l'url de la page d'accueil
     def test_home_status_code(self):
-        response = self.client.get(reverse('default'))
+        response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
     
     def test_home_param_status_code(self):
@@ -22,8 +22,8 @@ class HomeViewTest(TestCase):
 #----------------------------------------------------------------------------------
     # test du contenu de la page d'accueil
     def test_home_content(self):
-        response = self.client.get(reverse('default'))
-        self.assertContains(response, 'Hello default!')
+        response = self.client.get(reverse('home'))
+        self.assertContains(response, 'Hello home!')
 
     def test_home_param_content(self):
         response = self.client.get(reverse('home', args=["test"]))
