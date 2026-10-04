@@ -63,13 +63,17 @@ def ListProduits(request):
     return render(request, 'monApp/list_produits.html', {'produits':prdts})
 
 
+# def ListeCategories(request):
+#     cate = Categorie.objects.all()
+#     res = "<ul>"
+#     for cat in cate:
+#         res += f"<li>{cat.nomCat}</li>"
+#     res += "</ul>"
+#     return HttpResponse(res)
+
 def ListeCategories(request):
-    cate = Categorie.objects.all()
-    res = "<ul>"
-    for cat in cate:
-        res += f"<li>{cat.nomCat}</li>"
-    res += "</ul>"
-    return HttpResponse(res)
+    categories = Categorie.objects.all()
+    return render(request, "monApp/ListCategories.html", {'categories':categories})
 
 # def ListeRayons(request):
 #     rayon = Rayon.objects.all()

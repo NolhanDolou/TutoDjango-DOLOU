@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Mon app DJANGO</title>
+    </head>
+    <body>
+        <h1>Hello mes categories !</h1>
+        <p>J'ai {{ categories | length }} categories.</p>
+        <p>Mes categories sont :</p>
+        <ul>
+            {% for cate in categories %}
+            <li>{{ cate.nomCat | upper}}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
