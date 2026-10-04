@@ -1,0 +1,15 @@
+<html>
+    <head>
+        <title>Mon app DJANGO</title>
+    </head>
+    <body>
+        <h1>Hello mes rayons !</h1>
+        <p>J'ai {{ rayons | length }} rayons.</p>
+        <p>Mes rayons sont :</p>
+        <ul>
+            {% for r in rayons %}
+            <li>{{ r.nomRayon | upper}}</li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
