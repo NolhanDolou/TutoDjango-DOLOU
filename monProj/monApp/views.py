@@ -35,8 +35,13 @@ def home(request,param=None):
     return render(request, 'monApp/home.html', {'param':param})
     
 
+# def contact(request):
+#     return HttpResponse("<h1>Bienvenue sur la page de contact</h1>")
+
+
 def contact(request):
-    return HttpResponse("<h1>Bienvenue sur la page de contact</h1>")
+    return render(request, "monApp/contact.html")
+
 
 # def aboutus(request):
 #     return HttpResponse("<h1>Bienvenue sur la page d'infomations</h1>")
