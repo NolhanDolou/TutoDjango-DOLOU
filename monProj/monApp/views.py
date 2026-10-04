@@ -38,8 +38,11 @@ def home(request,param=None):
 def contact(request):
     return HttpResponse("<h1>Bienvenue sur la page de contact</h1>")
 
+# def aboutus(request):
+#     return HttpResponse("<h1>Bienvenue sur la page d'infomations</h1>")
+
 def aboutus(request):
-    return HttpResponse("<h1>Bienvenue sur la page d'infomations</h1>")
+    return render(request, "monApp/about.html")
 
 # def ListeProduits(request):
 #     prdts = Produit.objects.all()

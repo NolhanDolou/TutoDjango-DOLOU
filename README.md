@@ -107,3 +107,14 @@ creer super user : `./manage.py createsuperuser`
 (usr : o22403372, pwd : o22403372)
 
 pour ajouter des elements a notre page d'admin : `admin.site.register(Produit)`
+
+### Vue
+
+Pour faire les vues, on : 
+* crée le dossier templates/monApp.
+* crée un fichier html avec le nom de notre vue dans lequel on met notre page 
+* change la fonction concernée dans views.py, retourne un render (et non plus directement un HttpResponse) qui prend en param la méthode request, le path du fichier html, un dictionnaire de contexte
+  
+**syntaxe :**
+* {% if ... %} | {% elif ... %} | {% else %} | {% endif %}
+* {% for x in y %} | {{ x.name }} | {% endfor %}
