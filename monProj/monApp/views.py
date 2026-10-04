@@ -83,10 +83,14 @@ def ListeRayons(request):
     rayons = Rayon.objects.all()
     return render(request, "monApp/ListRayons.html", {'rayons':rayons})
 
+# def ListeStatuts(request):
+#     statut = Statut.objects.all()
+#     res = "<ul>"
+#     for st in statut:
+#         res += f"<li>{st.libelleStatut}</li>"
+#     res += "</ul>"
+#     return HttpResponse(res)
+
 def ListeStatuts(request):
-    statut = Statut.objects.all()
-    res = "<ul>"
-    for st in statut:
-        res += f"<li>{st.libelleStatut}</li>"
-    res += "</ul>"
-    return HttpResponse(res)
+    statuts = Statut.objects.all()
+    return render(request, "monApp/ListStatuts.html", {'statuts':statuts})
