@@ -5,8 +5,9 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 -[x] TD1 fini
 -[X] TP1 fini 
 -[x] TD2 fini
+-[x] TP2 fini
 
-**-[] TP2 : p7 : création page home**
+**-[] TD3 p1**
 
 État du coverage fin TD2 : 
 
