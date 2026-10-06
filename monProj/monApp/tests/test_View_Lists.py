@@ -18,7 +18,7 @@ class ListViewTest(TestCase):
 
     # test de l'url de la page d'accueil
     def test_lst_prod_status_code(self):
-        response = self.client.get(reverse('ListeProduits'))
+        response = self.client.get(reverse('produits'))
         self.assertEqual(response.status_code, 200)
 
     def test_lst_cate_status_code(self):
@@ -37,17 +37,17 @@ class ListViewTest(TestCase):
 #----------------------------------------------------------------------------------
 
     def test_liste_produits_content(self):
-        response = self.client.get(reverse('ListeProduits'))
-        self.assertContains(response, f"<li>{self.produit.intituleProd}</li>")
+        response = self.client.get(reverse('produits'))
+        self.assertContains(response, f"<li>{self.produit.intituleProd.upper()}</li>")
 
     def test_liste_categories_content(self):
         response = self.client.get(reverse('ListeCategories'))
-        self.assertContains(response, f"<li>{self.categorie.nomCat}</li>")
+        self.assertContains(response, f"<li>{self.categorie.nomCat.upper()}</li>")
 
     def test_liste_rayons_content(self):
         response = self.client.get(reverse('ListeRayons'))
-        self.assertContains(response, f"<li>{self.rayon.nomRayon}</li>")
+        self.assertContains(response, f"<li>{self.rayon.nomRayon.upper()}</li>")
 
     def test_liste_statuts_content(self):
         response = self.client.get(reverse('ListeStatuts'))
-        self.assertContains(response, f"<li>{self.statut.libelleStatut}</li>")
+        self.assertContains(response, f"<li>{self.statut.libelleStatut.upper()}</li>")
