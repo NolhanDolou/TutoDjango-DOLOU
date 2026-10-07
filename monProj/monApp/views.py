@@ -4,6 +4,8 @@ from monApp.models import Categorie
 from monApp.models import Rayon
 from monApp.models import Statut
 from django.http import Http404
+from django.views.generic import *
+
 
 
 
@@ -31,16 +33,30 @@ from django.http import HttpResponse
 #         return HttpResponse(f"<h1>Hello {param}!</h1>")
 #     return HttpResponse("<h1>Hello Django!</h1>")
 
-def home(request,param=None):
-    return render(request, 'monApp/home.html', {'param':param})
+# def home(request,param=None):
+#     return render(request, 'monApp/home.html', {'param':param})
+
+class HomeView(TemplateView):
+    template_name = "monApp/home.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(HomeView, self).get_context_data(**kwargs)
+        context['param'] = "Hello Django!"
+        return context
     
 
 # def contact(request):
 #     return HttpResponse("<h1>Bienvenue sur la page de contact</h1>")
 
-
-def contact(request):
-    return render(request, "monApp/contact.html")
+class ContactView(TemplateView):
+    template_name = "monApp/home.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(ContactView, self).get_context_data(**kwargs)
+        context['param'] = "Hello Django!"
+        context['page'] = "contact"
+        return context
+    
 
 
 # def aboutus(request):
