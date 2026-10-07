@@ -11,7 +11,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 État du coverage fin TD2 : 
 
-| Fichier              | Instructions | Manquées | Couverture |
+| Name                 | Stmts        | Miss     | Cover      |
 |:---------------------|-------------:|---------:|-----------:|
 | `monApp/__init__.py` |            0 |        0 |       100% |
 | `monApp/apps.py`     |            3 |        0 |       100% |
@@ -21,6 +21,16 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 | **Total**            |       **80** |    **0** | **100%** |
 
 
+État du coverage fin TP2 : 
+
+| Name                 | Stmts        | Miss     | Cover      |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            3 |        0 |       100% |
+| `monApp/views.py`    |           25 |        0 |       100% |
+| **Total**            |       **65** |    **0** | **100%** |
 
 
 ---
