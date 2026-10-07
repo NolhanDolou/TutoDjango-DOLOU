@@ -62,8 +62,17 @@ class ContactView(TemplateView):
 # def aboutus(request):
 #     return HttpResponse("<h1>Bienvenue sur la page d'infomations</h1>")
 
-def aboutus(request):
-    return render(request, "monApp/about.html")
+# def aboutus(request):
+#     return render(request, "monApp/about.html")
+
+class AboutView(TemplateView):
+    template_name = "monApp/home.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        context['param'] = "Hello Django!"
+        context['page'] = "about"
+        return context
 
 # def ListeProduits(request):
 #     prdts = Produit.objects.all()
