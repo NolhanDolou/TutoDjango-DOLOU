@@ -12,30 +12,6 @@ from django.views.generic import *
 # Create your views here.
 from django.http import HttpResponse
 
-# # Ma première version
-# def home(request, param="default"):
-#     print(request.__dict__)
-#     return HttpResponse(f"<h1>Hello {param}!</h1>")
-
-# def home(request, param=None):
-#     if request.GET:
-#         if 'name' in request.GET:                                                                                                   
-#             string = request.GET['name']
-#             return HttpResponse("Bonjour %s!" % string)     
-#         if 'test' in request.GET:
-#             raise Http404       
-#     if param:
-#         return HttpResponse(f"<h1>Hello {param}!</h1>")
-#     return HttpResponse("<h1>Hello Django!</h1>")
-
-# def home(request,param=None):
-#     if param:
-#         return HttpResponse(f"<h1>Hello {param}!</h1>")
-#     return HttpResponse("<h1>Hello Django!</h1>")
-
-# def home(request,param=None):
-#     return render(request, 'monApp/home.html', {'param':param})
-
 class HomeView(TemplateView):
     template_name = "monApp/home.html"
     
@@ -49,9 +25,6 @@ class HomeView(TemplateView):
         return context
         
 
-# def contact(request):
-#     return HttpResponse("<h1>Bienvenue sur la page de contact</h1>")
-
 class ContactView(TemplateView):
     template_name = "monApp/home.html"
     
@@ -61,13 +34,6 @@ class ContactView(TemplateView):
         context['page'] = "contact"
         return context
     
-
-
-# def aboutus(request):
-#     return HttpResponse("<h1>Bienvenue sur la page d'infomations</h1>")
-
-# def aboutus(request):
-#     return render(request, "monApp/about.html")
 
 class AboutView(TemplateView):
     template_name = "monApp/home.html"
