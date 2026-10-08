@@ -17,7 +17,7 @@ class HomeViewTest(TestCase):
             self.assertEqual(response.status_code, 200)
 
     def test_about_status_code(self):
-            response = self.client.get(reverse('aboutus'))
+            response = self.client.get(reverse('about'))
             self.assertEqual(response.status_code, 200)
 #----------------------------------------------------------------------------------
     # test du contenu de la page d'accueil
