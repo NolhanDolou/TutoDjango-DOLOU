@@ -5,6 +5,7 @@ from django.views.generic import *
 urlpatterns = [
     #path("", views.home, name="home"),
     path("home/", views.HomeView.as_view()),
+    path('home/<param>',views.HomeView.as_view()),
     path("contact/", views.ContactView.as_view()),
     path("about/", views.AboutView.as_view()),
 

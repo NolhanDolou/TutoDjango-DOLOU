@@ -7,7 +7,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 -[x] TD2 fini
 -[x] TP2 fini
 
-**-[] TD3 p1**
+**-[] TD3 p3**
 
 État du coverage fin TD2 : 
 
