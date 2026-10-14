@@ -61,6 +61,17 @@ class ProduitListView(ListView):
         context['titremenu'] = "Liste de mes produits !"
         return context
 
+class ProduitDetailView(DetailView):
+    model = Produit
+    template_name = "monApp/detail_produit.html"
+    context_object_name = "prdt"
+
+    def get_context_data(self, **kwargs):
+        context = super(ProduitDetailView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Détail du produit"
+        return context
+
+
 
 # def ListeProduits(request):
 #     prdts = Produit.objects.all()

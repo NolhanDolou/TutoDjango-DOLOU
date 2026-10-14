@@ -15,6 +15,7 @@ urlpatterns = [
     #path("contact/", views.contact, name="contact"),
     #path("aboutus/", views.aboutus, name="aboutus"),
     path('produits/',views.ProduitListView.as_view(),name='produits'),
+    path("produit/<int:pk>/",views.ProduitDetailView.as_view(), name='detailProduit'),
     #path('produits/',views.ListProduits ,name='produits'),
     path("ListeCategories/", views.ListeCategories, name="ListeCategories"),
     path("ListeRayons/", views.ListeRayons, name="ListeRayons"),
