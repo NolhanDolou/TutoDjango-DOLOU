@@ -45,6 +45,14 @@ class AboutView(TemplateView):
         context['page'] = "about"
         return context
 
+# ---------------------------------------------------------------
+# ------------------ LES LISTES ---------------------------------
+
+class ProduitListView(ListView):
+    model = Produit
+    template_name = "monApp/list_produits.html"
+    context_object_name = "produits"
+
 # def ListeProduits(request):
 #     prdts = Produit.objects.all()
 #     res = "<ul>"
