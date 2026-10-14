@@ -17,25 +17,25 @@ class HomeViewTest(TestCase):
             self.assertEqual(response.status_code, 200)
 
     def test_about_status_code(self):
-            response = self.client.get(reverse(views.AboutView.as_view()))
+            response = self.client.get(reverse('about'))
             self.assertEqual(response.status_code, 200)
 #----------------------------------------------------------------------------------
     # test du contenu de la page d'accueil
     def test_home_content(self):
         response = self.client.get(reverse('home'))
-        self.assertContains(response, 'Hello user !')
+        self.assertContains(response, 'Welcome, this is the home page')
 
     def test_home_param_content(self):
         response = self.client.get(reverse('home', args=["test"]))
-        self.assertContains(response, ' Hello test ')
+        self.assertContains(response, 'Hello test!')
 
     def test_contact_content(self):
         response = self.client.get(reverse('contact'))
         self.assertContains(response, '<h1> Welcome, this is the contact page </h1>')
 
     def test_aboutus_content(self):
-        response = self.client.get(reverse('aboutus'))
-        self.assertContains(response, "<h1> Welcome, this is the about us page </h1>")
+        response = self.client.get(reverse('about'))
+        self.assertContains(response, "<h1> Welcome, this is the about page </h1>")
 
 
 #----------------------------------------------------------------------------------
@@ -64,3 +64,4 @@ class ListViewTest(TestCase):
     # def test_lst_prod_content(self):
     #     response = self.client.get(reverse('ListeProduits'))
     #     self.assertContains(response, '')
+

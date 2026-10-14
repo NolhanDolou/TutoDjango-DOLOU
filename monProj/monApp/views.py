@@ -19,6 +19,7 @@ class HomeView(TemplateView):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['param'] = "Hello Django!"
         new_param = self.kwargs.get('param')
+        context['page'] = "home"
         if new_param!=None : 
             context['param'] = "Hello " + new_param + "!"
         

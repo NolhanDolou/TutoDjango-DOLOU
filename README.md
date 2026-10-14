@@ -3,11 +3,14 @@
 Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD1 fini
+
 -[X] TP1 fini 
+
 -[x] TD2 fini
+
 -[x] TP2 fini
 
-**-[] TD3 p3**
+**-[] TD3 p4**
 
 État du coverage fin TD2 : 
 
@@ -31,6 +34,8 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 | `monApp/urls.py`     |            3 |        0 |       100% |
 | `monApp/views.py`    |           25 |        0 |       100% |
 | **Total**            |       **65** |    **0** | **100%** |
+
+
 
 
 ---
