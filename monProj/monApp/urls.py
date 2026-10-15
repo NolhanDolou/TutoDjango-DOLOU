@@ -17,7 +17,11 @@ urlpatterns = [
     path('produits/',views.ProduitListView.as_view(),name='listProduits'),
     path("produit/<int:pk>/",views.ProduitDetailView.as_view(), name='detailProduit'),
     #path('produits/',views.ListProduits ,name='produits'),
-    path("ListeCategories/", views.ListeCategories, name="ListeCategories"),
+
+    path("categories/", views.CategorieListView.as_view(), name="ListeCategories"),
+    path("categorie/<int:pk>/",views.CategorieDetailView.as_view(), name='detailCategorie'),
+    # path("ListeCategories/", views.ListeCategories, name="ListeCategories"),
+
     path("ListeRayons/", views.ListeRayons, name="ListeRayons"),
     path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
 ]
