@@ -82,14 +82,14 @@ class CategorieListView(ListView):
         return context
     
 
-class CategorieDetailView(DetailView):
+class CategorieDetailView(DetailView): 
     model = Categorie
-    template_name = "monApp/detail_categorie.html"
+    template_name = "monApp/detail_categorie.html" 
     context_object_name = "ctr"
 
     def get_context_data(self, **kwargs):
         context = super(CategorieDetailView, self).get_context_data(**kwargs)
-        context['titremenu'] = "Détail du produit"
+        context['titremenu'] = "Détail de la catégorie"
         return context
 
 # def ListeProduits(request):

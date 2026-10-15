@@ -15,6 +15,7 @@
         <tr>
         <td>{{ cate.idCat }} </td>
         <td>{{ cate.nomCat }} </td>
+        <td><a href="{% url 'detailCategorie' cate.idCat %}">{{ cate.idCat }}</a></td>
         </tr>
         {% endfor %}
         </tbody>
