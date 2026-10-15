@@ -16,6 +16,7 @@
         <tr>
         <td>{{ st.idStatut }} </td>
         <td>{{ st.libelleStatut }} </td>
+        <td><a href="{% url 'detailStatut' st.idStatut %}">{{ st.idStatut }}</a></td>
         </tr>
         {% endfor %}
         </tbody>

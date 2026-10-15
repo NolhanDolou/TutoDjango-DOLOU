@@ -26,6 +26,8 @@ urlpatterns = [
     path("rayon/<int:pk>/",views.RayonDetailView.as_view(), name='detailRayon'),
     #path("ListeRayons/", views.ListeRayons, name="ListeRayons"),
 
-    path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
+    path("statuts/", views.StatutListView.as_view(), name="ListeStatuts"),
+    path("statut/<int:pk>/",views.StatutDetailView.as_view(), name='detailStatut'),
+    # path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
 ]
 

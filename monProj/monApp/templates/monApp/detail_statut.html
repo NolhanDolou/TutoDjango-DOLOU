@@ -1,0 +1,12 @@
+{% extends 'monApp/base.html' %}
+{% block menu %}
+<h1>{{titremenu}}</h1>
+{% endblock %}
+{% block contenu %}
+<h2>{{ stt.idStatut }}</h2>
+<ul>
+    <li>ID du statut : {{stt.idStatut }} </li>
+    <li>Nom du statut : {{ stt.libelleStatut }} </li>
+    <a href="{% url 'ListeStatuts' %}">Retour à la liste des statuts</a>
+</ul>
+{% endblock %}

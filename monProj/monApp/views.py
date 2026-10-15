@@ -113,52 +113,23 @@ class RayonDetailView(DetailView):
         context['titremenu'] = "Détail du rayon"
         return context
 
-# def ListeProduits(request):
-#     prdts = Produit.objects.all()
-#     res = "<ul>"
-#     for prd in prdts:
-#         res += f"<li>{prd.intituleProd}</li>"
-#     res += "</ul>"
-#     return HttpResponse(res)
+class StatutListView(ListView):
+    model = Statut
+    template_name = "monApp/ListStatuts.html"
+    context_object_name = "statuts"
 
-# Nouvelle version : 
-def ListProduits(request):
-    prdts = Produit.objects.all()
-    return render(request, 'monApp/list_produits.html', {'produits':prdts})
+    def get_context_data(self, **kwargs):
+        context = super(StatutListView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Liste de mes statuts !"
+        return context
+    
 
+class StatutDetailView(DetailView): 
+    model = Statut
+    template_name = "monApp/detail_statut.html" 
+    context_object_name = "stt"
 
-# def ListeCategories(request):
-#     cate = Categorie.objects.all()
-#     res = "<ul>"
-#     for cat in cate:
-#         res += f"<li>{cat.nomCat}</li>"
-#     res += "</ul>"
-#     return HttpResponse(res)
-
-def ListeCategories(request):
-    categories = Categorie.objects.all()
-    return render(request, "monApp/ListCategories.html", {'categories':categories})
-
-# def ListeRayons(request):
-#     rayon = Rayon.objects.all()
-#     res = "<ul>"
-#     for rn in rayon:
-#         res += f"<li>{rn.nomRayon}</li>"
-#     res += "</ul>"
-#     return HttpResponse(res)
-
-def ListeRayons(request):
-    rayons = Rayon.objects.all()
-    return render(request, "monApp/ListRayons.html", {'rayons':rayons})
-
-# def ListeStatuts(request):
-#     statut = Statut.objects.all()
-#     res = "<ul>"
-#     for st in statut:
-#         res += f"<li>{st.libelleStatut}</li>"
-#     res += "</ul>"
-#     return HttpResponse(res)
-
-def ListeStatuts(request):
-    statuts = Statut.objects.all()
-    return render(request, "monApp/ListStatuts.html", {'statuts':statuts})
+    def get_context_data(self, **kwargs):
+        context = super(StatutDetailView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Détail du statut"
+        return context
