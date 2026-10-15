@@ -92,6 +92,27 @@ class CategorieDetailView(DetailView):
         context['titremenu'] = "Détail de la catégorie"
         return context
 
+class RayonListView(ListView):
+    model = Rayon
+    template_name = "monApp/ListRayons.html"
+    context_object_name = "rayons"
+
+    def get_context_data(self, **kwargs):
+        context = super(RayonListView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Liste de mes rayons !"
+        return context
+    
+
+class RayonDetailView(DetailView): 
+    model = Rayon
+    template_name = "monApp/detail_rayon.html" 
+    context_object_name = "rayon"
+
+    def get_context_data(self, **kwargs):
+        context = super(RayonDetailView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Détail du rayon"
+        return context
+
 # def ListeProduits(request):
 #     prdts = Produit.objects.all()
 #     res = "<ul>"

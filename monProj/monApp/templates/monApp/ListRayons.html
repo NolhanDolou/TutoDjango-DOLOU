@@ -18,6 +18,7 @@
         <tr>
         <td>{{ r.idRayon }} </td>
         <td>{{ r.nomRayon }} </td>
+        <td><a href="{% url 'detailRayon' r.idRayon %}">{{ r.idRayon }}</a></td>
         </tr>
         {% endfor %}
         </tbody>

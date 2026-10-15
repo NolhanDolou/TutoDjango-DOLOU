@@ -22,7 +22,10 @@ urlpatterns = [
     path("categorie/<int:pk>/",views.CategorieDetailView.as_view(), name='detailCategorie'),
     # path("ListeCategories/", views.ListeCategories, name="ListeCategories"),
 
-    path("ListeRayons/", views.ListeRayons, name="ListeRayons"),
+    path("rayons/", views.RayonListView.as_view(), name="ListeRayons"),
+    path("rayon/<int:pk>/",views.RayonDetailView.as_view(), name='detailRayon'),
+    #path("ListeRayons/", views.ListeRayons, name="ListeRayons"),
+
     path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
 ]
 
