@@ -35,7 +35,16 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 | `monApp/views.py`    |           25 |        0 |       100% |
 | **Total**            |       **65** |    **0** | **100%** |
 
+État du coverage fin TD3 : 
 
+| Name                 | Stmts        | Miss     | Cover      |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            4 |        0 |       100% |
+| `monApp/views.py`    |           98 |        12 |       100% |
+| **Total**            |       **139** |    **12** | **91%** |
 
 
 ---

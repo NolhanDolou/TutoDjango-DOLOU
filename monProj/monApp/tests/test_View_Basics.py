@@ -43,7 +43,7 @@ class ListViewTest(TestCase):
 
     # test de l'url de la page d'accueil
     def test_lst_prod_status_code(self):
-        response = self.client.get(reverse('produits'))
+        response = self.client.get(reverse('listProduits'))
         self.assertEqual(response.status_code, 200)
 
     def test_lst_cate_status_code(self):
