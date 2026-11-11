@@ -12,6 +12,8 @@ from django.views.generic import *
 # Create your views here.
 from django.http import HttpResponse
 
+from monApp.forms import ContactUsForm
+
 class HomeView(TemplateView):
     template_name = "monApp/home.html"
     
@@ -26,15 +28,19 @@ class HomeView(TemplateView):
         return context
         
 
-class ContactView(TemplateView):
-    template_name = "monApp/home.html"
+# class ContactView(TemplateView):
+#     template_name = "monApp/home.html"
     
-    def get_context_data(self, **kwargs):
-        context = super(ContactView, self).get_context_data(**kwargs)
-        context['param'] = "Hello Django!"
-        context['page'] = "contact"
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super(ContactView, self).get_context_data(**kwargs)
+#         context['param'] = "Hello Django!"
+#         context['page'] = "contact"
+#         return context
     
+def ContactView(request):
+    form = ContactUsForm()
+    message = "Contact Us"
+    return render(request, "monApp/home.html",{'message':message, 'form':form})
 
 class AboutView(TemplateView):
     template_name = "monApp/home.html"

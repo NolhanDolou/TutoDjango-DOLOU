@@ -10,7 +10,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TP2 fini
 
-**-[] TD3 p8 : forms etc**
+**-[] TD3 p9 : forms etc**
 
 État du coverage fin TD2 : 
 
