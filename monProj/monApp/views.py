@@ -11,8 +11,9 @@ from django.views.generic import *
 
 # Create your views here.
 from django.http import HttpResponse
-
+from django.core.mail import send_mail
 from monApp.forms import ContactUsForm
+from django.shortcuts import redirect
 
 class HomeView(TemplateView):
     template_name = "monApp/home.html"
@@ -38,11 +39,27 @@ class HomeView(TemplateView):
 #         return context
     
 def ContactView(request):
-    form = ContactUsForm()
     titreh1 = "Contact us !"
-    print('La méthode de requête est : ', request.method)
-    print('Les données POST sont : ', request.POST)
+    if request.method=='POST':
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            send_mail(
+            subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via monProj Contact form',
+            message=form.cleaned_data['message'],
+            from_email=form.cleaned_data['email'],
+            recipient_list=['admin@monApp.com'],
+            )
+            return redirect('email-sent')
+    else:
+        form = ContactUsForm()
     return render(request, "monApp/home.html",{'titreh1':titreh1, 'form':form})
+
+def EmailSentView(request):
+    return render(
+        request,
+        "monApp/home.html",
+        {"message": "Votre message a bien été envoyé."},
+    )
 
 class AboutView(TemplateView):
     template_name = "monApp/home.html"

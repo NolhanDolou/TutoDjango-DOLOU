@@ -8,6 +8,7 @@ urlpatterns = [
     path("home/<param>", views.HomeView.as_view(), name="home"),
     #path("contact/", views.ContactView.as_view(), name="contact"),
     path("contact/", views.ContactView, name="contact"),
+    path("email-sent/", views.EmailSentView, name="email-sent"),
     path("about/", views.AboutView.as_view(), name="about"),
     #path("home/", views.home, name="home"),
     #path('', views.home, name="default"),
@@ -31,4 +32,3 @@ urlpatterns = [
     path("statut/<int:pk>/",views.StatutDetailView.as_view(), name='detailStatut'),
     # path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
 ]
-
