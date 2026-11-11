@@ -39,8 +39,10 @@ class HomeView(TemplateView):
     
 def ContactView(request):
     form = ContactUsForm()
-    message = "Contact Us"
-    return render(request, "monApp/home.html",{'message':message, 'form':form})
+    titreh1 = "Contact us !"
+    print('La méthode de requête est : ', request.method)
+    print('Les données POST sont : ', request.POST)
+    return render(request, "monApp/home.html",{'titreh1':titreh1, 'form':form})
 
 class AboutView(TemplateView):
     template_name = "monApp/home.html"
