@@ -3,6 +3,7 @@
 <h1>Liste de mes produits !</h1>
 {% endblock %}
 {% block contenu %}
+    <a href="{% url 'creationProduit' %}">Créer un nouveau produit</a>
     <h1>{{ titremenu }}</h1>
     <table class="table">
         <thead>

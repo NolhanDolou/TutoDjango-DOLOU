@@ -13,6 +13,7 @@ from django.views.generic import *
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from monApp.forms import ContactUsForm
+from monApp.forms import ProduitForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
@@ -158,3 +159,15 @@ class StatutDetailView(DetailView):
         context = super(StatutDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail du statut"
         return context
+
+
+def ProduitCreate(request):
+    titremenu = "Ajout d'un nouveau produit"
+    if request.method == 'POST':
+        form = ProduitForm(request.POST)
+        if form.is_valid():
+            prdt = form.save()
+            return redirect('dtl-prdt', prdt.refProd)
+    else:
+        form = ProduitForm()
+    return render(request, "monApp/create_produit.html", {'titremenu':titremenu,'form': form})
