@@ -130,6 +130,11 @@ class DetailViewTest(TestCase):
 #----------------------------------------------------------------------------------
 class CreateViewGetTest(TestCase):
 
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     # test de l'affichage (GET) des pages de création
     def test_create_produit_get(self):
         response = self.client.get(reverse('creationProduit'))
@@ -170,31 +175,47 @@ class UserViewTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Vous avez été déconnecté.")
 
+    # test de la connexion avec des identifiants valides (ConnectView.post)
     def test_login_post_valid(self):
-        User.objects.create_user(username="utilisateurTest", password="MotDePasseTest123!")
-        data = {
-            "username": "utilisateurTest",
-            "password": "MotDePasseTest123!",
-        }
+        User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        data = {"username": "testeur", "password": "MotDePasse123"}
+        # simulation soumission formulaire
         response = self.client.post(reverse('login'), data)
+        # Vérifie l'affichage de la page d'accueil
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Hello utilisateurTest!")
+        self.assertTemplateUsed(response, 'monApp/home.html')
+        # Vérifie le message de connexion
+        self.assertEqual(response.context['message'], "You're connected")
+        self.assertEqual(response.context['param'], "testeur")
+        # Vérifie que l'utilisateur est bien connecté
+        self.assertIn('_auth_user_id', self.client.session)
 
+    # test de la connexion avec des identifiants invalides (ConnectView.post)
     def test_login_post_invalid(self):
-        data = {
-            "username": "utilisateurInconnu",
-            "password": "MotDePasseInvalide123!",
-        }
+        User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        data = {"username": "testeur", "password": "MauvaisMotDePasse"}
         response = self.client.post(reverse('login'), data)
+        # Vérifie le renvoi vers la page d'inscription
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "S'inscrire")
+        self.assertTemplateUsed(response, 'monApp/page_register.html')
+        # Vérifie que l'utilisateur n'est pas connecté
+        self.assertNotIn('_auth_user_id', self.client.session)
 
+    # test de l'inscription (RegisterView.post)
     def test_register_post_valid(self):
         data = {
-            "username": "nouvelUtilisateur",
-            "mail": "nouvelUtilisateur@example.com",
-            "password": "MotDePasseTest123!",
+            "username": "nouvelutilisateur",
+            "mail": "nouveau@example.com",
+            "password": "MotDePasse123",
         }
+        # simulation soumission formulaire
         response = self.client.post(reverse('register'), data)
+        # Vérifie l'affichage de la page de connexion
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Se connecter")
+        self.assertTemplateUsed(response, 'monApp/page_login.html')
+        # Vérifie qu'un utilisateur a été créé
+        self.assertEqual(User.objects.count(), 1)
+        # Vérifie les valeurs de l'utilisateur créé
+        user = User.objects.get(username="nouvelutilisateur")
+        self.assertEqual(user.email, "nouveau@example.com")
+        self.assertTrue(user.check_password("MotDePasse123"))

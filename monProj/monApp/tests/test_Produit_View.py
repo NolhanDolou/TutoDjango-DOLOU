@@ -1,12 +1,21 @@
 from datetime import date
 
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
 from monApp.models import Produit
 
 
-class ProduitCreateViewTest(TestCase):
+class ProduitViewTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(
+            "testeur", "testeur@example.com", "MotDePasse123"
+        )
+        self.client.force_login(self.user)
+
+
+class ProduitCreateViewTest(ProduitViewTestCase):
     def test_categorie_create_view_post_valid(self):
         data = {
             "intituleProd": "ProduitPourTestCreation",
@@ -25,7 +34,7 @@ class ProduitCreateViewTest(TestCase):
         self.assertEqual(Produit.objects.last().intituleProd, 'ProduitPourTestCreation')
 
 
-class ProduitUpdateViewTest(TestCase):
+class ProduitUpdateViewTest(ProduitViewTestCase):
     def test_produit_update_view_get(self):
         produit = Produit.objects.create(
             intituleProd="ProduitAvantModification",
@@ -53,7 +62,7 @@ class ProduitUpdateViewTest(TestCase):
         self.assertEqual(produit.intituleProd, 'ProduitApresModification')
 
 
-class ProduitDeleteViewTest(TestCase):
+class ProduitDeleteViewTest(ProduitViewTestCase):
     def test_produit_delete_view_get(self):
         produit = Produit.objects.create(
             intituleProd="ProduitPourSuppression",

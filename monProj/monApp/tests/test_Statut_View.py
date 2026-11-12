@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
@@ -5,6 +6,11 @@ from monApp.models import Statut
 
 
 class StatutCreateViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_statut_create_view_post_valid(self):
         data = {
             "libelleStatut": "StatutPourTestCreation",
@@ -20,6 +26,11 @@ class StatutCreateViewTest(TestCase):
 
 
 class StatutUpdateViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_statut_update_view_get(self):
         statut = Statut.objects.create(libelleStatut="StatutAvantModification")
         response = self.client.get(reverse('modificationStatut', args=[statut.pk]))
@@ -37,6 +48,11 @@ class StatutUpdateViewTest(TestCase):
 
 
 class StatutDeleteViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_statut_delete_view_get(self):
         statut = Statut.objects.create(libelleStatut="StatutPourSuppression")
         response = self.client.get(reverse('suppressionStatut', args=[statut.pk]))

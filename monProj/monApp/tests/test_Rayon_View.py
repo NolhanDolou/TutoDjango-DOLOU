@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
@@ -5,6 +6,11 @@ from monApp.models import Rayon
 
 
 class RayonCreateViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_rayon_create_view_post_valid(self):
         data = {
             "nomRayon": "RayonPourTestCreation",
@@ -20,6 +26,11 @@ class RayonCreateViewTest(TestCase):
 
 
 class RayonUpdateViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_rayon_update_view_get(self):
         rayon = Rayon.objects.create(nomRayon="RayonAvantModification")
         response = self.client.get(reverse('modificationRayon', args=[rayon.pk]))
@@ -37,6 +48,11 @@ class RayonUpdateViewTest(TestCase):
 
 
 class RayonDeleteViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_rayon_delete_view_get(self):
         rayon = Rayon.objects.create(nomRayon="RayonPourSuppression")
         response = self.client.get(reverse('suppressionRayon', args=[rayon.pk]))

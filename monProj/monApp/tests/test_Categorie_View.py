@@ -1,49 +1,88 @@
+from datetime import date
+
+from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from monApp.models import Categorie
+from monApp.models import Produit
 
 
-class CategorieCreateViewTest(TestCase):
+class ProduitCreateViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
     def test_categorie_create_view_post_valid(self):
         data = {
-            "nomCat": "CategoriePourTestCreation",
+            "intituleProd": "ProduitPourTestCreation",
+            "prixUnitaireProd": 100.0,
+            "dateFabProd": date(2023, 1, 1),
+            "categorie": "",
+            "statut": "",
         }
         # simulation soumission formulaire
-        response = self.client.post(reverse('creationCategorie'), data)
+        response = self.client.post(reverse('creationProduit'), data)
         # Vérifie la redirection après la création
         self.assertEqual(response.status_code, 302)
         # Vérifie qu'un objet a été créé
-        self.assertEqual(Categorie.objects.count(), 1)
+        self.assertEqual(Produit.objects.count(), 1)
         # Vérifie la valeur de l'objet créé
-        self.assertEqual(Categorie.objects.last().nomCat, 'CategoriePourTestCreation')
+        self.assertEqual(Produit.objects.last().intituleProd, 'ProduitPourTestCreation')
 
 
-class CategorieUpdateViewTest(TestCase):
-    def test_categorie_update_view_get(self):
-        categorie = Categorie.objects.create(nomCat="CategorieAvantModification")
-        response = self.client.get(reverse('modificationCategorie', args=[categorie.pk]))
+class ProduitUpdateViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
+    def test_produit_update_view_get(self):
+        produit = Produit.objects.create(
+            intituleProd="ProduitAvantModification",
+            prixUnitaireProd=100.0,
+        )
+        response = self.client.get(reverse('modificationProduit', args=[produit.pk]))
         self.assertEqual(response.status_code, 200)
 
-    def test_categorie_update_view_post_valid(self):
-        categorie = Categorie.objects.create(nomCat="CategorieAvantModification")
+    def test_produit_update_view_post_valid(self):
+        produit = Produit.objects.create(
+            intituleProd="ProduitAvantModification",
+            prixUnitaireProd=100.0,
+        )
         data = {
-            "nomCat": "CategorieApresModification",
+            "intituleProd": "ProduitApresModification",
+            "prixUnitaireProd": 150.0,
+            "dateFabProd": date(2023, 1, 1),
+            "categorie": "",
+            "statut": "",
         }
-        response = self.client.post(reverse('modificationCategorie', args=[categorie.pk]), data)
+        response = self.client.post(reverse('modificationProduit', args=[produit.pk]), data)
         self.assertEqual(response.status_code, 302)
-        categorie.refresh_from_db()
-        self.assertEqual(categorie.nomCat, 'CategorieApresModification')
+        self.assertEqual(Produit.objects.count(), 1)
+        produit.refresh_from_db()
+        self.assertEqual(produit.intituleProd, 'ProduitApresModification')
 
 
-class CategorieDeleteViewTest(TestCase):
-    def test_categorie_delete_view_get(self):
-        categorie = Categorie.objects.create(nomCat="CategoriePourSuppression")
-        response = self.client.get(reverse('suppressionCategorie', args=[categorie.pk]))
+class ProduitDeleteViewTest(TestCase):
+    def setUp(self):
+        # connexion d'un utilisateur : ces vues exigent maintenant l'authentification
+        self.user = User.objects.create_user("testeur", "testeur@example.com", "MotDePasse123")
+        self.client.force_login(self.user)
+
+    def test_produit_delete_view_get(self):
+        produit = Produit.objects.create(
+            intituleProd="ProduitPourSuppression",
+            prixUnitaireProd=100.0,
+        )
+        response = self.client.get(reverse('suppressionProduit', args=[produit.pk]))
         self.assertEqual(response.status_code, 200)
 
-    def test_categorie_delete_view_post_valid(self):
-        categorie = Categorie.objects.create(nomCat="CategoriePourSuppression")
-        response = self.client.post(reverse('suppressionCategorie', args=[categorie.pk]))
+    def test_produit_delete_view_post_valid(self):
+        produit = Produit.objects.create(
+            intituleProd="ProduitPourSuppression",
+            prixUnitaireProd=100.0,
+        )
+        response = self.client.post(reverse('suppressionProduit', args=[produit.pk]))
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(Categorie.objects.count(), 0)
+        self.assertEqual(Produit.objects.count(), 0)
