@@ -5,13 +5,16 @@
 {% endblock %}
 
 {% block contenu %}
-        
+        <a href="{% url 'creationRayon' %}">Créer un nouveau rayon</a>
         <p>J'ai {{ rayons | length }} rayons.</p>
         <p>Mes rayons sont :</p>
         <table class="table">
         <thead>
         <th>Id</th>
         <th>Nom rayon</th>
+        <th>Détail</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         </thead>
         <tbody>
         {% for r in rayons %}
@@ -19,6 +22,8 @@
         <td>{{ r.idRayon }} </td>
         <td>{{ r.nomRayon }} </td>
         <td><a href="{% url 'detailRayon' r.idRayon %}">{{ r.idRayon }}</a></td>
+        <td><a href="{% url 'modificationRayon' r.idRayon %}">modifier</a></td>
+        <td><a href="{% url 'suppressionRayon' r.idRayon %}">supprimer</a></td>
         </tr>
         {% endfor %}
         </tbody>

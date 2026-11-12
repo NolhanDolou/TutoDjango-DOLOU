@@ -32,6 +32,9 @@ urlpatterns = [
 
     path("rayons/", views.RayonListView.as_view(), name="ListeRayons"),
     path("rayon/<int:pk>/",views.RayonDetailView.as_view(), name='detailRayon'),
+    path("rayon/", views.RayonCreateView.as_view(), name="creationRayon"),
+    path("rayon/<pk>/update/", views.RayonUpdateView.as_view(), name="modificationRayon"),
+    path("rayon/<pk>/delete/", views.RayonDeleteView.as_view(), name="suppressionRayon"),
     #path("ListeRayons/", views.ListeRayons, name="ListeRayons"),
 
     path("statuts/", views.StatutListView.as_view(), name="ListeStatuts"),

@@ -21,6 +21,7 @@ from django.core.mail import send_mail
 from monApp.forms import ContactUsForm
 from monApp.forms import ProduitForm
 from monApp.forms import CategorieForm
+from monApp.forms import RayonForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
@@ -242,3 +243,39 @@ class CategorieDeleteView(DeleteView):
     model = Categorie
     template_name = "monApp/delete_categorie.html"
     success_url = reverse_lazy('ListeCategories')
+
+
+class RayonCreateView(CreateView):
+    model = Rayon
+    form_class = RayonForm
+    template_name = "monApp/create_rayon.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(RayonCreateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Ajout d'un nouveau rayon"
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        rayon = form.save()
+        return redirect('detailRayon', rayon.idRayon)
+
+
+class RayonUpdateView(UpdateView):
+    model = Rayon
+    form_class = RayonForm
+    template_name = "monApp/update_rayon.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(RayonUpdateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Modification du rayon"
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        rayon = form.save()
+        return redirect('detailRayon', rayon.idRayon)
+
+
+class RayonDeleteView(DeleteView):
+    model = Rayon
+    template_name = "monApp/delete_rayon.html"
+    success_url = reverse_lazy('ListeRayons')

@@ -16,3 +16,8 @@ class CategorieForm(forms.ModelForm):
     class Meta:
         model = Categorie
         fields = '__all__'
+
+class RayonForm(forms.ModelForm):
+    class Meta:
+        model = Rayon
+        fields = '__all__'

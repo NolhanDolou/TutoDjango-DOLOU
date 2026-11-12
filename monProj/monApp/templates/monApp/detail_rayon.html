@@ -7,6 +7,8 @@
 <ul>
     <li>Référence produit : {{rayon.idRayon }} </li>
     <li>Nom du rayon : {{ rayon.nomRayon }} </li>
+    <li>Modifier : <a href="{% url 'modificationRayon' rayon.idRayon %}">modifier</a></li>
+    <li>Supprimer : <a href="{% url 'suppressionRayon' rayon.idRayon %}">supprimer</a></li>
     <a href="{% url 'ListeRayons' %}">Retour à la liste des rayons</a>
 </ul>
 {% endblock %}
