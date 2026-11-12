@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'monApp',
     'debug_toolbar',
     'django_bootstrap5', 
+    'django_extensions',
 ]
 
 MIDDLEWARE = [

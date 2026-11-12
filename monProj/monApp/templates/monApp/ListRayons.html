@@ -12,18 +12,18 @@
         <thead>
         <th>Id</th>
         <th>Nom rayon</th>
-        <th>Détail</th>
+        <th>Valeur marchande du rayon</th>
         <th>Modifier</th>
         <th>Supprimer</th>
         </thead>
         <tbody>
-        {% for r in rayons %}
+        {% for data in rayons_data %}
         <tr>
-        <td>{{ r.idRayon }} </td>
-        <td>{{ r.nomRayon }} </td>
-        <td><a href="{% url 'detailRayon' r.idRayon %}">{{ r.idRayon }}</a></td>
-        <td><a href="{% url 'modificationRayon' r.idRayon %}">modifier</a></td>
-        <td><a href="{% url 'suppressionRayon' r.idRayon %}">supprimer</a></td>
+        <td><a href="{% url 'detailRayon' data.rayon.idRayon %}">{{ data.rayon.idRayon }}</a></td>
+        <td>{{ data.rayon.nomRayon }} </td>
+        <td>{{ data.total_stock }} €</td>
+        <td><a href="{% url 'modificationRayon' data.rayon.idRayon %}">modifier</a></td>
+        <td><a href="{% url 'suppressionRayon' data.rayon.idRayon %}">supprimer</a></td>
         </tr>
         {% endfor %}
         </tbody>

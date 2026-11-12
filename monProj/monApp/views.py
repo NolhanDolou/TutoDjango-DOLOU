@@ -152,6 +152,13 @@ class RayonListView(ListView):
     def get_context_data(self, **kwargs):
         context = super(RayonListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste de mes rayons !"
+        rayons_data = []
+        for rayon in context['rayons']:
+            total = 0
+            for contenir in rayon.contenir_rayon.all():
+                total += contenir.produit.prixUnitaireProd * contenir.Qte
+            rayons_data.append({'rayon': rayon,'total_stock': total})
+        context['rayons_data'] = rayons_data
         return context
     
 
@@ -163,6 +170,22 @@ class RayonDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(RayonDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail du rayon"
+
+        produits_data = []
+        total_rayon = 0
+        total_nb_produit = 0
+
+        for contenir in self.object.contenir_rayon.all():
+            total_produit = contenir.produit.prixUnitaireProd * contenir.Qte
+            produits_data.append({'produit': contenir.produit,
+                'qte': contenir.Qte,
+                'prix_unitaire': contenir.produit.prixUnitaireProd,
+                'total_produit': total_produit} )
+            total_rayon += total_produit
+            total_nb_produit += contenir.Qte
+        context['produits_data'] = produits_data
+        context['total_rayon'] = total_rayon
+        context['total_nb_produit'] = total_nb_produit
         return context
 
 class StatutListView(ListView):
