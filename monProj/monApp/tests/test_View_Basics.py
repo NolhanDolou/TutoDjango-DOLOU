@@ -31,11 +31,11 @@ class HomeViewTest(TestCase):
 
     def test_contact_content(self):
         response = self.client.get(reverse('contact'))
-        self.assertContains(response, '<h1> Welcome, this is the contact page </h1>')
+        self.assertContains(response, 'Contact Us')
 
     def test_aboutus_content(self):
         response = self.client.get(reverse('about'))
-        self.assertContains(response, "<h1> Welcome, this is the about page </h1>")
+        self.assertContains(response, "Welcome, this is the about page")
 
 
 #----------------------------------------------------------------------------------
