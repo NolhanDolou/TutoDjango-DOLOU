@@ -1,5 +1,6 @@
 from datetime import date
 
+from django.contrib.auth.models import User
 from django.core import mail
 from django.test import TestCase
 from django.urls import reverse
@@ -149,3 +150,51 @@ class CreateViewGetTest(TestCase):
         response = self.client.get(reverse('creationStatut'))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.context['titremenu'], "Ajout d'un nouveau statut")
+
+
+#----------------------------------------------------------------------------------
+class UserViewTest(TestCase):
+
+    def test_login_page(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Se connecter")
+
+    def test_register_page(self):
+        response = self.client.get(reverse('register'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "S'inscrire")
+
+    def test_logout_page(self):
+        response = self.client.get(reverse('logout'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Vous avez été déconnecté.")
+
+    def test_login_post_valid(self):
+        User.objects.create_user(username="utilisateurTest", password="MotDePasseTest123!")
+        data = {
+            "username": "utilisateurTest",
+            "password": "MotDePasseTest123!",
+        }
+        response = self.client.post(reverse('login'), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Hello utilisateurTest!")
+
+    def test_login_post_invalid(self):
+        data = {
+            "username": "utilisateurInconnu",
+            "password": "MotDePasseInvalide123!",
+        }
+        response = self.client.post(reverse('login'), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "S'inscrire")
+
+    def test_register_post_valid(self):
+        data = {
+            "username": "nouvelUtilisateur",
+            "mail": "nouvelUtilisateur@example.com",
+            "password": "MotDePasseTest123!",
+        }
+        response = self.client.post(reverse('register'), data)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Se connecter")
