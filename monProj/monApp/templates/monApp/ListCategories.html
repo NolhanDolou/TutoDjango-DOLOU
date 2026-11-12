@@ -3,12 +3,16 @@
         <h1>Hello mes categories !</h1>
     {% endblock %}
     {% block contenu %}
+        <a href="{% url 'creationCategorie' %}">Créer une nouvelle catégorie</a>
         <p>J'ai {{ categories | length }} categories.</p>
         <p>Mes categories sont :</p>
         <table class="table">
         <thead>
         <th>Id</th>
         <th>Nom Catégorie</th>
+        <th>Détail</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         </thead>
         <tbody>
         {% for cate in categories %}
@@ -16,6 +20,8 @@
         <td>{{ cate.idCat }} </td>
         <td>{{ cate.nomCat }} </td>
         <td><a href="{% url 'detailCategorie' cate.idCat %}">{{ cate.idCat }}</a></td>
+        <td><a href="{% url 'modificationCategorie' cate.idCat %}">modifier</a></td>
+        <td><a href="{% url 'suppressionCategorie' cate.idCat %}">supprimer</a></td>
         </tr>
         {% endfor %}
         </tbody>

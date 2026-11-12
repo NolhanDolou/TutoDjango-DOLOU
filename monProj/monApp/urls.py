@@ -25,6 +25,9 @@ urlpatterns = [
 
     path("categories/", views.CategorieListView.as_view(), name="ListeCategories"),
     path("categorie/<int:pk>/",views.CategorieDetailView.as_view(), name='detailCategorie'),
+    path("categorie/", views.CategorieCreateView.as_view(), name="creationCategorie"),
+    path("categorie/<pk>/update/", views.CategorieUpdateView.as_view(), name="modificationCategorie"),
+    path("categorie/<pk>/delete/", views.CategorieDeleteView.as_view(), name="suppressionCategorie"),
     # path("ListeCategories/", views.ListeCategories, name="ListeCategories"),
 
     path("rayons/", views.RayonListView.as_view(), name="ListeRayons"),

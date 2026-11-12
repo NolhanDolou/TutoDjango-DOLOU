@@ -6,6 +6,8 @@
 <h2>{{ ctr.idCat }}</h2>
 <ul>
 <li>Nom de la catégorie : {{ctr.nomCat }} </li>
+<li>Modifier : <a href="{% url 'modificationCategorie' ctr.idCat %}">modifier</a></li>
+<li>Supprimer : <a href="{% url 'suppressionCategorie' ctr.idCat %}">supprimer</a></li>
 </ul>
 <a href="{% url 'ListeCategories' %}">Retour à la liste des catégories</a>
 {% endblock %}

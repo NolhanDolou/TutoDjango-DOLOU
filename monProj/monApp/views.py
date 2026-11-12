@@ -20,6 +20,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from monApp.forms import ContactUsForm
 from monApp.forms import ProduitForm
+from monApp.forms import CategorieForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
@@ -205,3 +206,39 @@ class ProduitDeleteView(DeleteView):
     model = Produit
     template_name = "monApp/delete_produit.html"
     success_url = reverse_lazy('listProduits')
+
+
+class CategorieCreateView(CreateView):
+    model = Categorie
+    form_class = CategorieForm
+    template_name = "monApp/create_categorie.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CategorieCreateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Ajout d'une nouvelle catégorie"
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        categorie = form.save()
+        return redirect('detailCategorie', categorie.idCat)
+
+
+class CategorieUpdateView(UpdateView):
+    model = Categorie
+    form_class = CategorieForm
+    template_name = "monApp/update_categorie.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CategorieUpdateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Modification de la catégorie"
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        categorie = form.save()
+        return redirect('detailCategorie', categorie.idCat)
+
+
+class CategorieDeleteView(DeleteView):
+    model = Categorie
+    template_name = "monApp/delete_categorie.html"
+    success_url = reverse_lazy('ListeCategories')
