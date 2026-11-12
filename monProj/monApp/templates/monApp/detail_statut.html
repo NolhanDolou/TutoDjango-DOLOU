@@ -7,6 +7,8 @@
 <ul>
     <li>ID du statut : {{stt.idStatut }} </li>
     <li>Nom du statut : {{ stt.libelleStatut }} </li>
+    <li>Modifier : <a href="{% url 'modificationStatut' stt.idStatut %}">modifier</a></li>
+    <li>Supprimer : <a href="{% url 'suppressionStatut' stt.idStatut %}">supprimer</a></li>
     <a href="{% url 'ListeStatuts' %}">Retour à la liste des statuts</a>
 </ul>
 {% endblock %}

@@ -3,13 +3,16 @@
 <h1>Hello mes statuts !</h1>
 {% endblock %}
 {% block contenu %}
-        
+        <a href="{% url 'creationStatut' %}">Créer un nouveau statut</a>
         <p>J'ai {{ statuts | length }} statuts.</p>
         <p>Mes statuts sont :</p>
         <table class="table">
         <thead>
         <th>Id</th>
         <th>Libelle statut</th>
+        <th>Détail</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
         </thead>
         <tbody>
         {% for st in statuts %}
@@ -17,6 +20,8 @@
         <td>{{ st.idStatut }} </td>
         <td>{{ st.libelleStatut }} </td>
         <td><a href="{% url 'detailStatut' st.idStatut %}">{{ st.idStatut }}</a></td>
+        <td><a href="{% url 'modificationStatut' st.idStatut %}">modifier</a></td>
+        <td><a href="{% url 'suppressionStatut' st.idStatut %}">supprimer</a></td>
         </tr>
         {% endfor %}
         </tbody>

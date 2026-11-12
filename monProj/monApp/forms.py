@@ -21,3 +21,8 @@ class RayonForm(forms.ModelForm):
     class Meta:
         model = Rayon
         fields = '__all__'
+
+class StatutForm(forms.ModelForm):
+    class Meta:
+        model = Statut
+        fields = '__all__'

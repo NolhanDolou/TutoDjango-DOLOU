@@ -22,6 +22,7 @@ from monApp.forms import ContactUsForm
 from monApp.forms import ProduitForm
 from monApp.forms import CategorieForm
 from monApp.forms import RayonForm
+from monApp.forms import StatutForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
@@ -279,3 +280,39 @@ class RayonDeleteView(DeleteView):
     model = Rayon
     template_name = "monApp/delete_rayon.html"
     success_url = reverse_lazy('ListeRayons')
+
+
+class StatutCreateView(CreateView):
+    model = Statut
+    form_class = StatutForm
+    template_name = "monApp/create_statut.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(StatutCreateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Ajout d'un nouveau statut"
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        statut = form.save()
+        return redirect('detailStatut', statut.idStatut)
+
+
+class StatutUpdateView(UpdateView):
+    model = Statut
+    form_class = StatutForm
+    template_name = "monApp/update_statut.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(StatutUpdateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Modification du statut"
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        statut = form.save()
+        return redirect('detailStatut', statut.idStatut)
+
+
+class StatutDeleteView(DeleteView):
+    model = Statut
+    template_name = "monApp/delete_statut.html"
+    success_url = reverse_lazy('ListeStatuts')
