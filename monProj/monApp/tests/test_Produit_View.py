@@ -16,6 +16,16 @@ class ProduitViewTestCase(TestCase):
 
 
 class ProduitCreateViewTest(ProduitViewTestCase):
+    def test_anonymous_user_is_redirected_to_login(self):
+        self.client.logout()
+
+        response = self.client.get(reverse("creationProduit"))
+
+        self.assertRedirects(
+            response,
+            f"{reverse('login')}?next={reverse('creationProduit')}",
+        )
+
     def test_categorie_create_view_post_valid(self):
         data = {
             "intituleProd": "ProduitPourTestCreation",

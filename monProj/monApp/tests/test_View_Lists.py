@@ -43,6 +43,14 @@ class ListViewTest(TestCase):
     def test_liste_categories_content(self):
         response = self.client.get(reverse('ListeCategories'))
         self.assertContains(response, f"<td>{self.categorie.nomCat} </td>")
+        self.assertContains(response, "<td>1 </td>")
+
+    def test_detail_categorie_affiche_nombre_produits(self):
+        response = self.client.get(
+            reverse("detailCategorie", args=[self.categorie.pk])
+        )
+
+        self.assertContains(response, "Boissons contenant 1 produit(s)")
 
     def test_liste_rayons_content(self):
         response = self.client.get(reverse('ListeRayons'))

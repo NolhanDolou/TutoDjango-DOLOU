@@ -16,7 +16,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD4 fini
 
-**-[] TP4 debut**
+**-[] TP4 p3 : ajout dans detail categorie**
 
 État du coverage fin TD2 : 
 
@@ -64,6 +64,17 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 | `monApp/views.py`    |          219 |        0 |       100% |
 | **Total**            |       **282** |     **0** | **100%** |
 
+État du coverage fin TD4 :
+
+| Name                 | Stmts        | Miss     | Cover      |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/forms.py`    |           22 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            4 |        0 |       100% |
+| `monApp/views.py`    |          261 |        0 |       100% |
+| **Total**            |       **324** |     **0** | **100%** |
 
 ---
 ## À retenir ...

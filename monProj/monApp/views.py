@@ -9,6 +9,7 @@ from django import forms
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.forms import BaseModelForm
+from django.db.models import Count
 
 
 from django.contrib.auth import authenticate, login, logout
@@ -118,6 +119,10 @@ class CategorieListView(ListView):
     template_name = "monApp/ListCategories.html"
     context_object_name = "categories"
 
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('produit_categorie'))
+
     def get_context_data(self, **kwargs):
         context = super(CategorieListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste de mes Categories !"
@@ -129,9 +134,14 @@ class CategorieDetailView(DetailView):
     template_name = "monApp/detail_categorie.html" 
     context_object_name = "ctr"
 
+    def get_queryset(self):
+        # Annoter chaque catégorie avec le nombre de produits liés
+        return Categorie.objects.annotate(nb_produits=Count('produit_categorie'))
+
     def get_context_data(self, **kwargs):
         context = super(CategorieDetailView, self).get_context_data(**kwargs)
         context['titremenu'] = "Détail de la catégorie"
+        context['produits'] = self.object.produit_categorie.all()
         return context
 
 class RayonListView(ListView):

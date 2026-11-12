@@ -10,6 +10,7 @@
         <thead>
         <th>Id</th>
         <th>Nom Catégorie</th>
+        <th>Nombre de Produits</th>
         <th>Détail</th>
         <th>Modifier</th>
         <th>Supprimer</th>
@@ -19,6 +20,7 @@
         <tr>
         <td>{{ cate.idCat }} </td>
         <td>{{ cate.nomCat }} </td>
+        <td>{{ cate.nb_produits }} </td>
         <td><a href="{% url 'detailCategorie' cate.idCat %}">{{ cate.idCat }}</a></td>
         <td><a href="{% url 'modificationCategorie' cate.idCat %}">modifier</a></td>
         <td><a href="{% url 'suppressionCategorie' cate.idCat %}">supprimer</a></td>

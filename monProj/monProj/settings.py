@@ -56,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'monProj.urls'
+LOGIN_URL = 'login'
 
 TEMPLATES = [
     {
