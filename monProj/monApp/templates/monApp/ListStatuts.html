@@ -10,6 +10,7 @@
         <thead>
         <th>Id</th>
         <th>Libelle statut</th>
+        <th>Nombre de Produits</th>
         <th>Détail</th>
         <th>Modifier</th>
         <th>Supprimer</th>
@@ -19,6 +20,7 @@
         <tr>
         <td>{{ st.idStatut }} </td>
         <td>{{ st.libelleStatut }} </td>
+        <td>{{ st.nb_produits }} </td>
         <td><a href="{% url 'detailStatut' st.idStatut %}">{{ st.idStatut }}</a></td>
         <td><a href="{% url 'modificationStatut' st.idStatut %}">modifier</a></td>
         <td><a href="{% url 'suppressionStatut' st.idStatut %}">supprimer</a></td>

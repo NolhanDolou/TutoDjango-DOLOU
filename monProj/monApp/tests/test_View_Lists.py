@@ -45,12 +45,52 @@ class ListViewTest(TestCase):
         self.assertContains(response, f"<td>{self.categorie.nomCat} </td>")
         self.assertContains(response, "<td>1 </td>")
 
+    def test_liste_statuts_affiche_nombre_produits(self):
+        response = self.client.get(reverse('ListeStatuts'))
+
+        self.assertContains(response, f"<td>{self.statut.libelleStatut} </td>")
+        self.assertContains(response, "<td>1 </td>")
+        self.assertEqual(response.context["statuts"][0].nb_produits, 1)
+
+    def test_detail_statut_affiche_nombre_et_produits(self):
+        response = self.client.get(
+            reverse("detailStatut", args=[self.statut.pk])
+        )
+
+        self.assertContains(response, "Ce statut contient")
+        self.assertContains(response, self.produit.intituleProd)
+        self.assertContains(
+            response,
+            reverse("detailProduit", args=[self.produit.pk]),
+        )
+        self.assertEqual(response.context["stt"].nb_produits, 1)
+        self.assertQuerySetEqual(
+            response.context["produits"],
+            [self.produit],
+        )
+
+    def test_detail_statut_sans_produits_affiche_message(self):
+        statut_sans_produit = Statut.objects.create(libelleStatut="Indisponible")
+
+        response = self.client.get(
+            reverse("detailStatut", args=[statut_sans_produit.pk])
+        )
+
+        self.assertContains(
+            response,
+            "Aucun produit trouvé pour ce statut.",
+        )
+        self.assertEqual(response.context["stt"].nb_produits, 0)
+        self.assertQuerySetEqual(response.context["produits"], [])
+
     def test_detail_categorie_affiche_nombre_produits(self):
         response = self.client.get(
             reverse("detailCategorie", args=[self.categorie.pk])
         )
 
-        self.assertContains(response, "Boissons contenant 1 produit(s)")
+        self.assertContains(response, "Cette catégorie contient")
+        self.assertEqual(response.context["ctr"].nb_produits, 1)
+        self.assertContains(response, self.produit.intituleProd)
 
     def test_liste_rayons_content(self):
         response = self.client.get(reverse('ListeRayons'))

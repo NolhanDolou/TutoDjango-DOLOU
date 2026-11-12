@@ -18,4 +18,30 @@
         <a href="{% url 'suppressionCategorie' ctr.idCat %}" class="btn btn-danger mt-2">Supprimer</a>
     </div>
 </div>
-{% endblock %}
+
+    <div class="card mb-4">
+        <div class="card-header bg-primary text-white">
+            <h4>Cette catégorie contient <strong>{{ ctr.nb_produits }}</strong> produit(s)</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                {% if produits %}
+                    {% for prdt in produits %}
+                        <div class="col-sm-3">
+                            <div class="card mb-2 text-center">
+                                <div class="card-header bg-info text-white">
+                                    <h5 class="card-title">{{ prdt.intituleProd }}</h5>
+                                </div>
+                                <div class="card-body">
+                                    <a href="{% url 'detailProduit' prdt.refProd %}" class="btn btn-primary mt-2">Détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-muted">Aucun produit trouvé pour cette catégorie.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
