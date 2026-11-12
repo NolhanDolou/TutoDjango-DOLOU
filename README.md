@@ -14,7 +14,9 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TP3 fini
 
-**-[] TD4 au debut**
+-[x] TD4 fini
+
+**-[] TP4 debut**
 
 État du coverage fin TD2 : 
 
