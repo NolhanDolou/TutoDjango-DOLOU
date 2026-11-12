@@ -9,7 +9,8 @@ from django import forms
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.forms import BaseModelForm
-from django.db.models import Count
+from django.db.models import Count, Prefetch
+from monApp.models import Contenir
 
 
 from django.contrib.auth import authenticate, login, logout
@@ -97,7 +98,12 @@ class ProduitListView(ListView):
     context_object_name = "produits"
 
     def get_queryset(self):
-        return Produit.objects.order_by("prixUnitaireProd") # tri sur le prix
+        # Charge les catégories et les statuts en même temps
+        queryset = Produit.objects.select_related('categorie').select_related('statut')
+        query = self.request.GET.get('search')
+        if query:
+            queryset = queryset.filter(intituleProd__icontains=query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(ProduitListView, self).get_context_data(**kwargs)
@@ -121,7 +127,11 @@ class CategorieListView(ListView):
 
     def get_queryset(self):
         # Annoter chaque catégorie avec le nombre de produits liés
-        return Categorie.objects.annotate(nb_produits=Count('produit_categorie'))
+        queryset = Categorie.objects.annotate(nb_produits=Count('produit_categorie'))
+        query = self.request.GET.get('search')
+        if query:
+            queryset = queryset.filter(nomCat__icontains=query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(CategorieListView, self).get_context_data(**kwargs)
@@ -149,6 +159,17 @@ class RayonListView(ListView):
     template_name = "monApp/ListRayons.html"
     context_object_name = "rayons"
 
+    def get_queryset(self):
+        # Précharge tous les "contenir" de chaque rayon,
+        # et en même temps le produit de chaque contenir
+        queryset = Rayon.objects.prefetch_related(
+            Prefetch("contenir_rayon", queryset=Contenir.objects.select_related("produit"))
+        )
+        query = self.request.GET.get('search')
+        if query:
+            queryset = queryset.filter(nomRayon__icontains=query)
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super(RayonListView, self).get_context_data(**kwargs)
         context['titremenu'] = "Liste de mes rayons !"
@@ -166,6 +187,14 @@ class RayonDetailView(DetailView):
     model = Rayon
     template_name = "monApp/detail_rayon.html" 
     context_object_name = "rayon"
+
+    def get_queryset(self):
+        return Rayon.objects.prefetch_related(
+            Prefetch(
+                "contenir_rayon",
+                queryset=Contenir.objects.select_related("produit"),
+            )
+        )
 
     def get_context_data(self, **kwargs):
         context = super(RayonDetailView, self).get_context_data(**kwargs)
@@ -194,7 +223,11 @@ class StatutListView(ListView):
     context_object_name = "statuts"
 
     def get_queryset(self):
-        return Statut.objects.annotate(nb_produits=Count('produit_statut'))
+        queryset = Statut.objects.annotate(nb_produits=Count('produit_statut'))
+        query = self.request.GET.get('search')
+        if query:
+            queryset = queryset.filter(libelleStatut__icontains=query)
+        return queryset
 
     def get_context_data(self, **kwargs):
         context = super(StatutListView, self).get_context_data(**kwargs)

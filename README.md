@@ -16,7 +16,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD4 fini
 
-**-[] TP4 p8 : ajout dans detail categorie**
+**-[] TP4 p10 : ajout dans detail categorie**
 
 État du coverage fin TD2 : 
 

@@ -1,6 +1,8 @@
+from decimal import Decimal
+
 from django.test import TestCase
 from django.urls import reverse
-from monApp.models import Produit, Categorie, Rayon, Statut
+from monApp.models import Contenir, Produit, Categorie, Rayon, Statut
 
 class ListViewTest(TestCase):
 
@@ -95,6 +97,23 @@ class ListViewTest(TestCase):
     def test_liste_rayons_content(self):
         response = self.client.get(reverse('ListeRayons'))
         self.assertContains(response, f"<td>{self.rayon.nomRayon} </td>")
+
+    def test_detail_rayon_precharge_les_produits_et_calcule_les_totaux(self):
+        for index in range(5):
+            produit = Produit.objects.create(
+                intituleProd=f"Produit {index}",
+                prixUnitaireProd=Decimal("2.00"),
+            )
+            Contenir.objects.create(produit=produit, rayon=self.rayon, Qte=1)
+        url = reverse("detailRayon", args=[self.rayon.pk])
+
+        with self.assertNumQueries(2):
+            response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context["total_nb_produit"], 5)
+        self.assertEqual(response.context["total_rayon"], Decimal("10.00"))
+        self.assertEqual(len(response.context["produits_data"]), 5)
 
     def test_liste_statuts_content(self):
         response = self.client.get(reverse('ListeStatuts'))
