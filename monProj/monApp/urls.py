@@ -7,7 +7,7 @@ urlpatterns = [
     path("home/", views.HomeView.as_view(), name="home"),
     path("home/<param>", views.HomeView.as_view(), name="home"),
     #path("contact/", views.ContactView.as_view(), name="contact"),
-    path("contact/", views.ContactView, name="contact"),
+    path("contact/",views.ContactView.as_view() , name="contact"),
     path("email-sent/", views.EmailSentView, name="email-sent"),
     path("about/", views.AboutView.as_view(), name="about"),
     #path("home/", views.home, name="home"),
@@ -31,5 +31,7 @@ urlpatterns = [
     path("statuts/", views.StatutListView.as_view(), name="ListeStatuts"),
     path("statut/<int:pk>/",views.StatutDetailView.as_view(), name='detailStatut'),
     # path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
-    path("produit/",views.ProduitCreate , name="creationProduit"),
+    path("produit/",views.ProduitCreateView.as_view(), name="creationProduit"),
+    path("produit/<pk>/update/",views.ProduitUpdateView.as_view(), name="modificationProduit"),
+
 ]

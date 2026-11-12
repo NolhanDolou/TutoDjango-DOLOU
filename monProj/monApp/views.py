@@ -5,6 +5,12 @@ from monApp.models import Rayon
 from monApp.models import Statut
 from django.http import Http404
 from django.views.generic import *
+from django import forms
+from django.core.mail import send_mail
+from django.urls import reverse_lazy
+from django.forms import BaseModelForm
+
+
 
 
 
@@ -39,21 +45,24 @@ class HomeView(TemplateView):
 #         context['page'] = "contact"
 #         return context
     
-def ContactView(request):
-    titreh1 = "Contact us !"
-    if request.method=='POST':
-        form = ContactUsForm(request.POST)
-        if form.is_valid():
-            send_mail(
-            subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via monProj Contact form',
-            message=form.cleaned_data['message'],
-            from_email=form.cleaned_data['email'],
-            recipient_list=['admin@monApp.com'],
-            )
-            return redirect('email-sent')
-    else:
-        form = ContactUsForm()
-    return render(request, "monApp/home.html",{'titreh1':titreh1, 'form':form})
+class ContactView(FormView):
+    template_name = "monApp/home.html"
+    form_class = ContactUsForm
+    success_url = reverse_lazy("email-sent")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["message"] = "Contact Us"
+        return context
+    def form_valid(self, form):
+        send_mail(
+        subject=f'Message from {form.cleaned_data["name"] or "anonyme"} via MonProjet Contact Us form',
+        message=form.cleaned_data["message"],
+        from_email=form.cleaned_data["email"],
+        recipient_list=["admin@monprojet.com"],
+        )
+        return super().form_valid(form)
+
 
 def EmailSentView(request):
     return render(
@@ -161,13 +170,31 @@ class StatutDetailView(DetailView):
         return context
 
 
-def ProduitCreate(request):
-    titremenu = "Ajout d'un nouveau produit"
-    if request.method == 'POST':
-        form = ProduitForm(request.POST)
-        if form.is_valid():
-            prdt = form.save()
-            return redirect('dtl-prdt', prdt.refProd)
-    else:
-        form = ProduitForm()
-    return render(request, "monApp/create_produit.html", {'titremenu':titremenu,'form': form})
+class ProduitCreateView(CreateView):
+    model = Produit
+    form_class=ProduitForm
+    template_name = "monApp/create_produit.html"
+
+    def get_context_data(self,**kwargs):
+        context = super(ProduitCreateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Ajout d'un nouveau produit"
+        return context
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        prdt = form.save()
+        return redirect('detailProduit', prdt.refProd)
+
+
+class ProduitUpdateView(UpdateView):
+    model = Produit
+    form_class=ProduitForm
+    template_name = "monApp/update_produit.html"
+
+    def get_context_data(self,**kwargs):
+        context = super(ProduitUpdateView, self).get_context_data(**kwargs)
+        context['titremenu'] = "Modification du produit"
+        return context
+    
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        prdt = form.save()
+        return redirect('detailProduit', prdt.refProd)
