@@ -11,7 +11,9 @@ from django.urls import reverse_lazy
 from django.forms import BaseModelForm
 
 
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.models import User
 
 
 
@@ -316,3 +318,39 @@ class StatutDeleteView(DeleteView):
     model = Statut
     template_name = "monApp/delete_statut.html"
     success_url = reverse_lazy('ListeStatuts')
+
+
+
+class ConnectView(LoginView):
+    template_name = 'monApp/page_login.html'
+
+    def post(self, request, **kwargs):
+        identifiant= request.POST.get('username', False)
+        motdepasse= request.POST.get('password', False)
+        user = authenticate(username=identifiant, password=motdepasse)
+        if user is not None and user.is_active:
+            login(request, user)
+            return render(request, 'monApp/home.html', {'param': identifiant, 'message': "You're connected"})
+        else:
+            return render(request, 'monApp/page_register.html')
+
+
+class RegisterView(TemplateView):
+    template_name = 'monApp/page_register.html'
+
+    def post(self, request, **kwargs):
+        identifiant = request.POST.get('username', False)
+        courriel = request.POST.get('mail', False)
+        motdepasse = request.POST.get('password', False)
+        user = User.objects.create_user(identifiant, courriel, motdepasse)
+        user.save()
+        if user is not None and user.is_active:
+            return render(request, 'monApp/page_login.html')
+
+
+class DisconnectView(TemplateView):
+    template_name = 'monApp/page_logout.html'
+
+    def get(self, request, **kwargs):
+        logout(request)
+        return render(request, self.template_name)

@@ -43,6 +43,9 @@ urlpatterns = [
     path("statut/<pk>/update/", views.StatutUpdateView.as_view(), name="modificationStatut"),
     path("statut/<pk>/delete/", views.StatutDeleteView.as_view(), name="suppressionStatut"),
     # path("ListeStatuts/", views.ListeStatuts, name="ListeStatuts")
+    path('login/', views.ConnectView.as_view(), name='login'),
+    path('register/', views.RegisterView.as_view(), name='register'),
+    path('logout/', views.DisconnectView.as_view(), name='logout'),
     
 
 ]
