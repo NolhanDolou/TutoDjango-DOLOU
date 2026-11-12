@@ -12,7 +12,7 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD3 fini
 
-**-[] Tp3 début**
+**-[] Tp3 taux de couverture tests, p9**
 
 État du coverage fin TD2 : 
 
