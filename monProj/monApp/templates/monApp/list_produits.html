@@ -15,6 +15,7 @@
             <th>Statut</th>
             <th>Détail</th>
             <th>Modifier</th>
+            <th>Supprimer</th>
         </thead>
         <tbody>
             {% for prdt in produits %}
@@ -27,6 +28,7 @@
                     <td>{{ prdt.statut }} </td>
                     <td><a href="{% url 'detailProduit' prdt.refProd %}">{{ prdt.refProd }}</a></td>
                     <td><a href="{% url 'modificationProduit' prdt.refProd %}">modifier</a></td>
+                    <td><a href="{% url 'suppressionProduit' prdt.refProd %}">supprimer</a></td>
                 </tr>
             {% endfor %}
         </tbody>

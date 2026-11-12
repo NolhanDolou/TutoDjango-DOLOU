@@ -198,3 +198,10 @@ class ProduitUpdateView(UpdateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         prdt = form.save()
         return redirect('detailProduit', prdt.refProd)
+
+
+
+class ProduitDeleteView(DeleteView):
+    model = Produit
+    template_name = "monApp/delete_produit.html"
+    success_url = reverse_lazy('listProduits')
