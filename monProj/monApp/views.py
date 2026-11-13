@@ -29,6 +29,7 @@ from monApp.forms import ProduitForm
 from monApp.forms import CategorieForm
 from monApp.forms import RayonForm
 from monApp.forms import StatutForm
+from monApp.forms import ContenirForm
 from django.shortcuts import redirect
 
 class HomeView(TemplateView):
@@ -407,6 +408,35 @@ class StatutDeleteView(DeleteView):
     success_url = reverse_lazy('ListeStatuts')
 
 
+@method_decorator(login_required, name='dispatch')
+class ContenirCreateView(CreateView):
+    model = Contenir
+    form_class = ContenirForm
+    template_name = "monApp/create_contenir.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(ContenirCreateView, self).get_context_data(**kwargs)
+        context['rayon'] = Rayon.objects.get(pk=self.kwargs['pk'])
+        return context
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        rayon = Rayon.objects.get(pk=self.kwargs['pk'])
+        produit = form.cleaned_data['produit']
+        qte_saisie = form.cleaned_data['Qte']
+        contenir_existant = Contenir.objects.filter(rayon=rayon, produit=produit).first()
+        
+        if contenir_existant:
+            contenir_existant.Qte += qte_saisie
+            contenir_existant.save()
+        else:
+            nouveau_contenir = Contenir(
+                rayon=rayon,
+                produit=produit,
+                Qte=qte_saisie
+            )
+            nouveau_contenir.save()
+            
+        return redirect('detailRayon', rayon.idRayon)
 
 class ConnectView(LoginView):
     template_name = 'monApp/page_login.html'

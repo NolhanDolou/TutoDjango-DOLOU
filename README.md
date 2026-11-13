@@ -18,39 +18,70 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 **-[] TP4 p10 : ajout dans detail categorie**
 
-État du coverage fin TD2 : 
+
+
+## PROCÉDURE D'INSTALLATION
+
+### Prérequis
+
+- Git
+- Python 3.12 ou une version ultérieure compatible avec Django 6.1
+
+### 1. Cloner le projet
+
+Dans un terminal, placez-vous dans le dossier où vous souhaitez installer le projet, puis exécutez :
+
+```bash
+git clone https://github.com/NolhanDolou/TutoDjango-DOLOU.git
+cd TutoDjango-DOLOU
+```
+
+### 2. Créer et activer un environnement virtuel
+
+L'environnement virtuel isole les dépendances Python de ce projet des autres projets.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+
+Une fois activé, le nom de l'environnement (`.venv`) apparaît généralement au début de la ligne de commande.
+
+### 3. Installer les dépendances
+
+Depuis la racine du dépôt, installez les paquets listés dans `requirements.txt` :
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+### 4. Préparer la base de données et lancer le serveur
+
+Depuis la racine du dépôt, entrez dans le dossier Django, appliquez les migrations, puis démarrez le serveur de développement :
+
+```bash
+cd monProj
+python manage.py migrate
+python manage.py runserver
+```
+
+Quand le serveur indique qu'il est prêt, ouvrez `http://127.0.0.1:8000/monApp/home/` dans votre navigateur. 
+
+
+## Coverage 
+
+État du coverage fin TD4 :
 
 | Name                 | Stmts        | Miss     | Cover      |
 |:---------------------|-------------:|---------:|-----------:|
 | `monApp/__init__.py` |            0 |        0 |       100% |
 | `monApp/apps.py`     |            3 |        0 |       100% |
-| `monApp/models.py`   |           34 |        0 |       100% |
-| `monApp/urls.py`     |            3 |        0 |       100% |
-| `monApp/views.py`    |           40 |        0 |       100% |
-| **Total**            |       **80** |    **0** | **100%** |
-
-
-État du coverage fin TP2 : 
-
-| Name                 | Stmts        | Miss     | Cover      |
-|:---------------------|-------------:|---------:|-----------:|
-| `monApp/__init__.py` |            0 |        0 |       100% |
-| `monApp/apps.py`     |            3 |        0 |       100% |
-| `monApp/models.py`   |           34 |        0 |       100% |
-| `monApp/urls.py`     |            3 |        0 |       100% |
-| `monApp/views.py`    |           25 |        0 |       100% |
-| **Total**            |       **65** |    **0** | **100%** |
-
-État du coverage fin TD3 : 
-
-| Name                 | Stmts        | Miss     | Cover      |
-|:---------------------|-------------:|---------:|-----------:|
-| `monApp/__init__.py` |            0 |        0 |       100% |
-| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/forms.py`    |           22 |        0 |       100% |
 | `monApp/models.py`   |           34 |        0 |       100% |
 | `monApp/urls.py`     |            4 |        0 |       100% |
-| `monApp/views.py`    |           98 |        12 |       100% |
-| **Total**            |       **139** |    **12** | **91%** |
+| `monApp/views.py`    |          261 |        0 |       100% |
+| **Total**            |       **324** |     **0** | **100%** |
 
 État du coverage fin TP3 :
 
@@ -64,17 +95,45 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 | `monApp/views.py`    |          219 |        0 |       100% |
 | **Total**            |       **282** |     **0** | **100%** |
 
-État du coverage fin TD4 :
+
+
+État du coverage fin TD3 : 
 
 | Name                 | Stmts        | Miss     | Cover      |
 |:---------------------|-------------:|---------:|-----------:|
 | `monApp/__init__.py` |            0 |        0 |       100% |
 | `monApp/apps.py`     |            3 |        0 |       100% |
-| `monApp/forms.py`    |           22 |        0 |       100% |
 | `monApp/models.py`   |           34 |        0 |       100% |
 | `monApp/urls.py`     |            4 |        0 |       100% |
-| `monApp/views.py`    |          261 |        0 |       100% |
-| **Total**            |       **324** |     **0** | **100%** |
+| `monApp/views.py`    |           98 |        12 |       100% |
+| **Total**            |       **139** |    **12** | **91%** |
+
+
+État du coverage fin TP2 : 
+
+| Name                 | Stmts        | Miss     | Cover      |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            3 |        0 |       100% |
+| `monApp/views.py`    |           25 |        0 |       100% |
+| **Total**            |       **65** |    **0** | **100%** |
+
+
+
+État du coverage fin TD2 : 
+
+| Name                 | Stmts        | Miss     | Cover      |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            3 |        0 |       100% |
+| `monApp/views.py`    |           40 |        0 |       100% |
+| **Total**            |       **80** |    **0** | **100%** |
+
+
 
 ---
 ## À retenir ...
