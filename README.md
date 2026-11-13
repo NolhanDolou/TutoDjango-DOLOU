@@ -16,8 +16,9 @@ Bienvenue dans le TutoDjango de **Nolhan Dolou**, groupe 31b
 
 -[x] TD4 fini
 
-**-[] TP4 p10 : ajout dans detail categorie**
+-**Arrêté au TP4**
 
+**Ce qu'il me manquait** : mise en place des routes API, TD5
 
 
 ## PROCÉDURE D'INSTALLATION
@@ -70,6 +71,18 @@ Quand le serveur indique qu'il est prêt, ouvrez `http://127.0.0.1:8000/monApp/h
 
 
 ## Coverage 
+
+État du coverage fin TP4 :
+
+| Name                 | Stmts        | Miss     | Cover      |
+|:---------------------|-------------:|---------:|-----------:|
+| `monApp/__init__.py` |            0 |        0 |       100% |
+| `monApp/apps.py`     |            3 |        0 |       100% |
+| `monApp/forms.py`    |           26 |        0 |       100% |
+| `monApp/models.py`   |           34 |        0 |       100% |
+| `monApp/urls.py`     |            4 |        0 |       100% |
+| `monApp/views.py`    |          330 |       16 |        95% |
+| **Total**            |       **397** |    **16** |  **96%** |
 
 État du coverage fin TD4 :
 
